@@ -1,0 +1,94 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow" style="width: 30rem;">
+    <form action="#">
+      <h2 class="text-center mb-4">Profile</h2>
+
+      <!-- صورة البروفايل -->
+      <div class="text-center mb-4">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-fluid rounded-circle" id="profile-image" style="width: 150px; height: 150px;">
+        <input type="file" class="form-control mt-2" id="upload-image" accept="image/*" hidden>
+        <button type="button" class="btn btn-outline-primary mt-2" onclick="document.getElementById('upload-image').click();">Change Picture</button>
+      </div>
+
+      <!-- الاسم -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" value="John Doe" required>
+      </div>
+
+      <!-- البريد الإلكتروني -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" value="johndoe@example.com" required>
+      </div>
+
+      <!-- تغيير كلمة المرور -->
+      <div class="mb-3">
+        <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</button>
+      </div>
+
+      <!-- عرض الحجوزات -->
+      <h5 class="mb-3">Your Bookings</h5>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#12345</td>
+            <td>Hiking Adventure</td>
+            <td>2025-04-25</td>
+            <td>Confirmed</td>
+          </tr>
+          <tr>
+            <td>#12346</td>
+            <td>Beach Trip</td>
+            <td>2025-05-10</td>
+            <td>Pending</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- زر لحفظ التغييرات -->
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- Modal لتغيير كلمة المرور -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="old-password" class="form-label">Old Password</label>
+          <input type="password" class="form-control" id="old-password" required>
+        </div>
+        <div class="mb-3">
+          <label for="new-password" class="form-label">New Password</label>
+          <input type="password" class="form-control" id="new-password" required>
+        </div>
+        <div class="mb-3">
+          <label for="confirm-password" class="form-label">Confirm New Password</label>
+          <input type="password" class="form-control" id="confirm-password" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="changePassword()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+:root {
+  --primary-color: #4e73df; /* اللون الأساسي للأزرار */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* نشيل الصورة */
+  /* ونضيف تدرج لوني بين الأخضر والرمادي */
+  background: linear-gradient(135deg, #28a745, #6c757d) !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9); /* الكارد شفاف شوي */
+  border: none;
+  border-radius: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+  /* تصحيح للـ hover */
+  .btn-primary:hover {
+    background-color: #3e5dcf; /* لون أزرق أغمق */
+    border-color: #3e5dcf;
+  }

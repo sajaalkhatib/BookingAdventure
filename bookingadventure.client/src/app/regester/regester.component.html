@@ -1,0 +1,45 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow" style="width: 22rem;">
+    <form action="#">
+      <h2 class="text-center mb-4">Register</h2>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Enter your email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Enter your password</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label">Confirm your password</label>
+        <input type="password" class="form-control" id="confirm-password" required>
+      </div>
+
+      <!-- حقل رفع الصورة -->
+      <div class="mb-3">
+        <label for="profile-image" class="form-label">Upload your profile picture</label>
+        <input type="file" class="form-control" id="profile-image" accept="image/*" required>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="terms">
+          <label class="form-check-label" for="terms">
+            I agree to the terms and conditions
+          </label>
+        </div>
+      </div>
+
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+
+      <div class="text-center">
+        <p class="mb-0">Already have an account? <a href="#" class="text-primary">Login</a></p>
+      </div>
+    </form>
+  </div>
+</div>

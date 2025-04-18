@@ -1,2 +1,5 @@
-<a routerLink="/home">home</a>
+<app-nav *ngIf="showNavbarFooter"></app-nav>
+
 <router-outlet></router-outlet>
+
+<app-footer *ngIf="showNavbarFooter"></app-footer>
