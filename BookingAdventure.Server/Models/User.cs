@@ -15,7 +15,7 @@ public partial class User
 
     public string? Phone { get; set; }
 
-    public bool? IsDeleted { get; set; }
+    public string? Img { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }

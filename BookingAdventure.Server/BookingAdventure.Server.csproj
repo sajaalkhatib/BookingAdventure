@@ -31,9 +31,4 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IDataService\" />
-    <Folder Include="DataService\" />
-  </ItemGroup>
-
 </Project>

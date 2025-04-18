@@ -23,7 +23,5 @@ public partial class Booking
 
     public virtual Adventure? Adventure { get; set; }
 
-    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
-
     public virtual User? User { get; set; }
 }

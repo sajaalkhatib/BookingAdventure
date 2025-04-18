@@ -34,4 +34,6 @@ public partial class Adventure
     public virtual AdventureCategory? Category { get; set; }
 
     public virtual Instructor? Instructor { get; set; }
+
+    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
