@@ -9,7 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
-import { ServiceComponent } from './service/service.component';
+
 import { DestinationComponent } from './destination/destination.component';
 import { DestinationdetailsComponent } from './destinationdetails/destinationdetails.component';
 import { BookingComponent } from './booking/booking.component';
@@ -26,7 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavComponent,
     FooterComponent,
     ContactComponent,
-    ServiceComponent,
+   
     DestinationComponent,
     DestinationdetailsComponent,
     BookingComponent,

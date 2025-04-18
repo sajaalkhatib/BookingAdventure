@@ -7,7 +7,7 @@ public partial class Review
 {
     public int ReviewId { get; set; }
 
-    public int? BookingId { get; set; }
+    public int? AdventureId { get; set; }
 
     public int? Rating { get; set; }
 
@@ -15,5 +15,5 @@ public partial class Review
 
     public DateTime? ReviewDate { get; set; }
 
-    public virtual Booking? Booking { get; set; }
+    public virtual Adventure? Adventure { get; set; }
 }

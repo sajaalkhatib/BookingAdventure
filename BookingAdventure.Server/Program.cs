@@ -1,4 +1,5 @@
-using BookingAdventure.Server.Models;
+using BookingAdventure.Server.IDataService;
+//using BookingAdventure.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MyDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
+//builder.Services.AddDbContext<MyDbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
 
 //builder.Services.AddCors(options => options.AddPolicy("develop", option =>
 //{
@@ -19,7 +20,18 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 //    option.AllowAnyHeader();
 //    option.AllowAnyMethod();
 //}));
-//builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IAdmin>();
+//builder.Services.AddScoped<Iuser>();
+//builder.Services.AddScoped<User>();
+//builder.Services.AddScoped<Admin>();
+
+builder.Services.AddCors(options => options.AddPolicy("develop", option =>
+{
+    option.AllowAnyOrigin();
+    option.AllowAnyHeader();
+    option.AllowAnyMethod();
+}));
+
 
 var app = builder.Build();
 
