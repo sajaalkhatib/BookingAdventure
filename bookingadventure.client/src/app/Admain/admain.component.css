@@ -1,0 +1,28 @@
+.admin-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 15px;
+}
+
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+      .sidebar ul li a {
+        text-decoration: none;
+        color: #333;
+      }
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+}
