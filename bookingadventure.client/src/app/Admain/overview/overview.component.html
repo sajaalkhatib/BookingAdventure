@@ -52,10 +52,10 @@
         <td>{{ booking.bookingId }}</td>
         <td>{{ booking.fullName }}</td>
         <td>{{ booking.email }}</td>
-        <td>{{ booking.bookingDate | date:'short' }}</td>
-        <td>{{ booking.scheduledDate | date:'short' }}</td>
-        <td>{{ booking.numberOfParticipants }}</td>
-        <td>{{ booking.paymentType }}</td>
+        <td>{{ booking.bookingDate ? (booking.bookingDate | date:'short') : '-' }}</td>
+        <td>{{ booking.scheduledDate ? (booking.scheduledDate | date:'short') : '-' }}</td>
+        <td>{{ booking.numberOfParticipants !== null ? booking.numberOfParticipants : '-' }}</td>
+        <td>{{ booking.paymentType || '-' }}</td>
       </tr>
     </tbody>
   </table>

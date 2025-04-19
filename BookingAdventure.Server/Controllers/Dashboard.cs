@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace BookingAdventure.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -18,7 +17,7 @@ namespace BookingAdventure.Server.Controllers
         }
 
         // Get Bookings
-        [HttpGet]
+        [HttpGet("bookings")] // <-- عدلنا هون
         public async Task<IActionResult> GetBookings()
         {
             var bookings = await (from booking in _context.Bookings
@@ -63,57 +62,148 @@ namespace BookingAdventure.Server.Controllers
 
         // =========== Services Management ===========
 
-        // Get All Services
-        [HttpGet("services")]
-        public async Task<ActionResult<IEnumerable<Service>>> GetAllServices()
+        [HttpGet("adventures")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAllAdventures()
         {
-            return await _context.Services.ToListAsync();
+            var adventures = await _context.Adventures
+                .Include(a => a.AdventureImages)
+                .Select(a => new
+                {
+                    a.AdventureId,
+                    a.Title,
+                    a.Description,
+                    a.Duration,
+                    a.Level,
+                    a.Price,
+                    a.Location,
+                    a.MaxParticipants,
+                    a.IsAvailable,
+                    Images = a.AdventureImages.Select(img => new { img.ImageUrl }).ToList()
+                })
+                .ToListAsync();
+
+            return Ok(adventures);
         }
 
-        // Add a New Service
-        [HttpPost("services")]
+        // Add Adventure
+        [HttpPost("adventure")]
         public async Task<IActionResult> AddService([FromBody] DTO.DTOAddServise adminSer)
         {
             if (adminSer == null)
                 return BadRequest("Invalid Service Data");
 
-            var dataser = new Service { Description = adminSer.Description, ImageUrl = adminSer.ImageUrl, Name = adminSer.Name, Price = adminSer.Price };
-            _context.Services.Add(dataser);
-            _context.SaveChanges();
+            var adventure = new Adventure
+            {
+                Title = adminSer.Title,
+                Description = adminSer.Description,
+                Duration = adminSer.Duration,
+                Level = adminSer.Level,
+                Price = adminSer.Price,
+                Location = adminSer.Location,
+                MaxParticipants = adminSer.MaxParticipants,
+                IsAvailable = adminSer.IsAvailable,
+            };
+
+            _context.Adventures.Add(adventure);
+            await _context.SaveChangesAsync();
+
+            if (!string.IsNullOrEmpty(adminSer.ImageUrl))
+            {
+                var adventureImage = new AdventureImage
+                {
+                    AdventureId = adventure.AdventureId,
+                    ImageUrl = adminSer.ImageUrl
+                };
+                _context.AdventureImages.Add(adventureImage);
+                await _context.SaveChangesAsync();
+            }
+
             return Ok(adminSer);
         }
 
-        // Update Existing Service
-        [HttpPut("services/{id}")]
-        public async Task<IActionResult> UpdateService(int id, [FromBody] Service updatedService)
+        [HttpPut("adventure/{id}")]
+        public async Task<IActionResult> UpdateAdventure(int id, [FromBody] DTO.DTOAddServise updatedAdventure)
         {
-            var service = await _context.Services.FindAsync(id);
-            if (service == null)
-                return NotFound("Service not found");
+            var adventure = await _context.Adventures
+                .Include(a => a.AdventureImages)
+                .FirstOrDefaultAsync(a => a.AdventureId == id);
 
-            // Update fields
-            service.Name = updatedService.Name;
-            service.Description = updatedService.Description;
-            service.Price = updatedService.Price;
-            // أضف هنا أي فيلد آخر عندك
+            if (adventure == null)
+                return NotFound("Adventure not found");
+
+            adventure.Title = updatedAdventure.Title;
+            adventure.Description = updatedAdventure.Description;
+            adventure.Duration = updatedAdventure.Duration;
+            adventure.Level = updatedAdventure.Level;
+            adventure.Price = updatedAdventure.Price;
+            adventure.Location = updatedAdventure.Location;
+            adventure.MaxParticipants = updatedAdventure.MaxParticipants;
+            adventure.IsAvailable = updatedAdventure.IsAvailable;
+
+            if (!string.IsNullOrEmpty(updatedAdventure.ImageUrl))
+            {
+                var existingImage = adventure.AdventureImages.FirstOrDefault();
+                if (existingImage != null)
+                {
+                    existingImage.ImageUrl = updatedAdventure.ImageUrl;
+                }
+                else
+                {
+                    var newImage = new AdventureImage
+                    {
+                        AdventureId = adventure.AdventureId,
+                        ImageUrl = updatedAdventure.ImageUrl
+                    };
+                    _context.AdventureImages.Add(newImage);
+                }
+            }
 
             await _context.SaveChangesAsync();
 
-            return Ok(service);
+            return Ok(new
+            {
+                adventure.AdventureId,
+                adventure.Title,
+                adventure.Description,
+                adventure.Duration,
+                adventure.Level,
+                adventure.Price,
+                adventure.Location,
+                adventure.MaxParticipants,
+                adventure.IsAvailable,
+                Images = adventure.AdventureImages.Select(img => new { img.ImageUrl }).ToList()
+            });
         }
 
-        // Delete Service
-        [HttpDelete("services/{id}")]
-        public async Task<IActionResult> DeleteService(int id)
+        [HttpDelete("adventure/{id}")]
+        public async Task<IActionResult> DeleteAdventure(int id)
         {
-            var service = await _context.Services.FindAsync(id);
-            if (service == null)
-                return NotFound("Service not found");
+            // البحث عن المغامرة مع الحجز والصور المرتبطة
+            var adventure = await _context.Adventures
+                .Include(a => a.AdventureImages)  // تحميل الصور المرتبطة
+                .Include(a => a.Bookings)         // تحميل الحجز المرتبط
+                .FirstOrDefaultAsync(a => a.AdventureId == id);
 
-            _context.Services.Remove(service);
+            // إذا لم يتم العثور على المغامرة
+            if (adventure == null)
+                return NotFound("Adventure not found");
+
+            // حذف الحجز المرتبط بالمغامرة أولاً
+            _context.Bookings.RemoveRange(adventure.Bookings);
+
+            // حذف الصور المرتبطة
+            _context.AdventureImages.RemoveRange(adventure.AdventureImages);
+
+            // الآن حذف المغامرة نفسها
+            _context.Adventures.Remove(adventure);
+
+            // حفظ التغييرات في قاعدة البيانات
             await _context.SaveChangesAsync();
 
-            return Ok("Service deleted successfully");
+            return Ok("Adventure deleted successfully");
         }
+
+
+
     }
 }

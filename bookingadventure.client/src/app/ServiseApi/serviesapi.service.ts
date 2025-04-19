@@ -7,50 +7,49 @@ import { Observable } from 'rxjs';
 })
 export class ServiesapiService {
 
-  private apiUrl = 'https://localhost:7280/api/Dashboard';
-  private servicesUrl = `${this.apiUrl}/services`; // رابط خاص بالخدمات
-
+  private apiUrl = 'https://localhost:7280/api/Dashboard'; // ✅ بدون /bookings
+  private baseUrl = 'https://localhost:7280/api/Dashboard/adventures';
   constructor(private http: HttpClient) { }
 
-  // Get Bookings
+  // ✅ دالة تجيب كل الحجوزات
   getAllBookings(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/bookings`);
   }
 
-  // Get Total Users
+  // ✅ Get Total Users
   getTotalUsers(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/total-users`);
   }
 
-  // Get Total Bookings
+  // ✅ Get Total Bookings
   getTotalBookings(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/total-bookings`);
   }
 
-  // Get Total Instructors
+  // ✅ Get Total Instructors
   getTotalInstructors(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/total-instructors`);
   }
 
+
   // ===== Services API =====
-
-  // Get All Services
-  getAllServices(): Observable<any[]> {
-    return this.http.get<any[]>(this.servicesUrl);
+  getAllAdventures(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/adventures`);
   }
 
-  // Add New Service
-  addService(service: any): Observable<any> {
-    return this.http.post<any>(this.servicesUrl, service);
+  addAdventure(adventure: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/adventure`, adventure);
   }
 
-  // Update Service
-  updateService(id: number, service: any): Observable<any> {
-    return this.http.put<any>(`${this.servicesUrl}/${id}`, service);
+  updateAdventure(id: number, adventure: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/adventure/${id}`, adventure);
   }
 
-  // Delete Service
-  deleteService(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.servicesUrl}/${id}`);
+  deleteAdventure(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/adventure/${id}`);
   }
 }
+
+
+
+
