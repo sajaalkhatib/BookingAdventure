@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './Admain/overview/overview.component';
 import { AdmainComponent } from './Admain/admain.component';
+import { AdminSerComponent } from './Admain/admin-ser/admin-ser.component';
 
 ;
 
@@ -39,14 +41,15 @@ import { AdmainComponent } from './Admain/admain.component';
     RegesterComponent,
     ProfileComponent,
     OverviewComponent,
-    AdmainComponent
-  
+    AdmainComponent,
+    AdminSerComponent,
 
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

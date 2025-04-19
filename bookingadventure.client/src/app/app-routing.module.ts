@@ -14,6 +14,7 @@ import { ServiceComponent } from './service/service.component';
 //import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdmainComponent } from './Admain/admain.component';
 import { OverviewComponent } from './Admain/overview/overview.component';
+import { AdminSerComponent } from './Admain/admin-ser/admin-ser.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,9 @@ const routes: Routes = [
   //{ path: "dashbord", component: DashboardComponent },
   {
     path: "Admin", component: AdmainComponent, children: [
-      { path: "overview", component: OverviewComponent }
+      { path: "", component: OverviewComponent },
+      { path: "adminser", component: AdminSerComponent }
+
 
     ]
   }]

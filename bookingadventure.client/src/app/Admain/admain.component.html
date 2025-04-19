@@ -4,16 +4,16 @@
     <h2 class="h4 mb-4">Admin Dashboard</h2>
     <ul class="nav flex-column">
       <li class="nav-item mb-2">
-        <a class="nav-link text-white" routerLink="/Admin/overview" routerLinkActive="active">overview</a>
+        <a class="nav-link text-white" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Overview</a>
       </li>
       <li class="nav-item mb-2">
-        <a class="nav-link text-white" routerLink="/admin/staff" routerLinkActive="active">Staff</a>
+        <a class="nav-link text-white" routerLink="/Admin/adminser" routerLinkActive="active">Services</a>
       </li>
       <li class="nav-item mb-2">
-        <a class="nav-link text-white" routerLink="/admin/users" routerLinkActive="active">Users</a>
+        <a class="nav-link text-white" routerLink="users" routerLinkActive="active">Users</a>
       </li>
       <li class="nav-item mb-2">
-        <a class="nav-link text-white" routerLink="/admin/contact" routerLinkActive="active">Contact Us</a>
+        <a class="nav-link text-white" routerLink="contact" routerLinkActive="active">Contact Us</a>
       </li>
     </ul>
   </nav>

@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const hiddenRoutes = ['/login', '/reg', '/dashboard'];
+        const hiddenRoutes = ['/login', '/reg', '/dashboard', '/Admin'];
         this.showNavbarFooter = !hiddenRoutes.some(route => event.urlAfterRedirects.includes(route));
       }
     });

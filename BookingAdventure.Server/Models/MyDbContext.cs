@@ -29,6 +29,8 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Review> Reviews { get; set; }
 
+    public virtual DbSet<Service> Services { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -129,6 +131,20 @@ public partial class MyDbContext : DbContext
             entity.HasOne(d => d.Adventure).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.AdventureId)
                 .HasConstraintName("FK__Reviews__Adventu__4BAC3F29");
+        });
+
+        modelBuilder.Entity<Service>(entity =>
+        {
+            entity.HasKey(e => e.ServiceId).HasName("PK__Services__C51BB00A3F9BC678");
+
+            entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
         });
 
         modelBuilder.Entity<User>(entity =>
