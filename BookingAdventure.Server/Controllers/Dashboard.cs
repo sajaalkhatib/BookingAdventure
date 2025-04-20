@@ -67,6 +67,9 @@ namespace BookingAdventure.Server.Controllers
         {
             var adventures = await _context.Adventures
                 .Include(a => a.AdventureImages)
+                .Include(a => a.Instructor)
+                .Include(a => a.Destination)
+                .Include(a => a.Category)
                 .Select(a => new
                 {
                     a.AdventureId,
@@ -78,6 +81,9 @@ namespace BookingAdventure.Server.Controllers
                     a.Location,
                     a.MaxParticipants,
                     a.IsAvailable,
+                    //a.InstructorName = a.Instructor.FullName,
+                    //a.CategoryName = a.Category.CategoryName,
+                    //a.DestinationName = a.Destination.Name,
                     Images = a.AdventureImages.Select(img => new { img.ImageUrl }).ToList()
                 })
                 .ToListAsync();
@@ -90,7 +96,11 @@ namespace BookingAdventure.Server.Controllers
         public async Task<IActionResult> AddService([FromBody] DTO.DTOAddServise adminSer)
         {
             if (adminSer == null)
+            {
                 return BadRequest("Invalid Service Data");
+            }
+
+            Console.WriteLine("Received Adventure: " + adminSer.Title); // تحقق من البيانات التي تستلمها
 
             var adventure = new Adventure
             {
@@ -120,6 +130,7 @@ namespace BookingAdventure.Server.Controllers
 
             return Ok(adminSer);
         }
+
 
         [HttpPut("adventure/{id}")]
         public async Task<IActionResult> UpdateAdventure(int id, [FromBody] DTO.DTOAddServise updatedAdventure)
@@ -200,7 +211,7 @@ namespace BookingAdventure.Server.Controllers
             // حفظ التغييرات في قاعدة البيانات
             await _context.SaveChangesAsync();
 
-            return Ok("Adventure deleted successfully");
+            return Ok();
         }
 
 

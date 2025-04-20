@@ -20,7 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './Admain/overview/overview.component';
 import { AdmainComponent } from './Admain/admain.component';
-import { AdminSerComponent } from './Admain/admin-ser/admin-ser.component';
+import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
 
 ;
 
@@ -42,7 +42,7 @@ import { AdminSerComponent } from './Admain/admin-ser/admin-ser.component';
     ProfileComponent,
     OverviewComponent,
     AdmainComponent,
-    AdminSerComponent,
+    GetAdventureComponent,
 
   ],
   imports: [
