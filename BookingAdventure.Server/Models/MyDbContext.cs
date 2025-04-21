@@ -116,6 +116,13 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.TypeName).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<AdventureType>(entity =>
+        {
+            entity.HasKey(e => e.TypeId).HasName("PK__Adventur__516F03B5B2238051");
+
+            entity.Property(e => e.TypeName).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<Booking>(entity =>
         {
             entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951AEDF14691BF");

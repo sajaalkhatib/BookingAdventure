@@ -1,31 +1,182 @@
-:root {
-  --primary-color: #4e73df; /* اللون الأساسي للأزرار */
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  /* تدرج لوني بين الأخضر والرمادي */
-  background: linear-gradient(135deg, #28a745, #6c757d);
+/* Main Wrapper Styles */
+.main-wrapper.authentication-wrapper {
+  background-image: url('https://media.istockphoto.com/id/1164878594/photo/rearview-of-hikers-with-backpacks-enjoying-the-sunset-in-the-mountains.jpg?s=612x612&w=0&k=20&c=1HVzA1AtxjUlyvPBm2PK9nQb17dHaI4SXHOkHPOR8Tc=');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.9); /* الكارد شفاف شوي */
-  border: none;
-  border-radius: 1rem;
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-  /* تصحيح للـ hover */
-  .btn-primary:hover {
-    background-color: #3e5dcf; /* لون أزرق أغمق */
-    border-color: #3e5dcf;
+  /* Overlay for better readability */
+  .main-wrapper.authentication-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
   }
+
+/* Card Styles */
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+/* Form Header */
+h2 {
+  color: #2d3748;
+  font-weight: 700;
+  margin-bottom: 1.5rem !important;
+  position: relative;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 3px;
+  }
+
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+  .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+
+/* Input Icons (if you want to add them later) */
+.input-icon {
+  position: relative;
+}
+
+  .input-icon .form-control {
+    padding-left: 40px;
+  }
+
+.input-icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+/* Link Styles */
+.text-primary {
+  color: #667eea !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+  .text-primary:hover {
+    color: #5a67d8 !important;
+    text-decoration: underline;
+  }
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .card {
+    width: 100% !important;
+    margin: 0 15px;
+  }
+}
+
+/* Animation for form elements */
+.mb-3 {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Create staggered animation for form elements */
+.mb-3:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.mb-3:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.mb-3:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.mb-3:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.d-grid {
+  animation-delay: 0.5s;
+}
+
+.text-center {
+  animation-delay: 0.6s;
+}
