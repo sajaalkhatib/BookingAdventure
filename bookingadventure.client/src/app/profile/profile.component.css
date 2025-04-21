@@ -1,34 +1,133 @@
-:root {
-  --primary-color: #4e73df; /* اللون الأساسي للأزرار */
+/* Main Profile Container */
+.profile-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2d3748;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #f7f7f7;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.9);
+/* Profile Card Styling */
+.profile-card {
+  border-radius: 12px;
   border: none;
-  border-radius: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #ffffff;
 }
 
-.btn-primary, .btn-warning {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+.profile-image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+  border: 4px solid #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-  .btn-primary:hover, .btn-warning:hover {
-    background-color: #3e5dcf;
-    border-color: #3e5dcf;
-  }
-
-/* تصميم الجدول */
-.table th, .table td {
-  text-align: center;
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.table th {
+.profile-name {
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.profile-email {
+  color: #718096;
+  margin-bottom: 0.5rem;
+}
+
+.profile-phone {
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Styling */
+.profile-form, .password-form {
+  border-radius: 12px;
+  border: none;
+  background-color: #ffffff;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-title {
+  color: #2d3748;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 3px;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Password Toggle Button */
+.input-group .btn-outline-secondary {
+  border-color: #e2e8f0;
+  border-left: none;
+}
+
+.input-group .btn-outline-secondary:hover {
   background-color: #f8f9fa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .profile-card, .profile-form, .password-form {
+    width: 100%;
+    margin: 0 15px;
+  }
+  
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+  }
 }

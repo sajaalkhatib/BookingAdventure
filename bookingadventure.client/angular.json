@@ -39,6 +39,7 @@
             ],
 
             "scripts": []
+
           },
           "configurations": {
             "production": {

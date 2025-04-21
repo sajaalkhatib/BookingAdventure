@@ -1,0 +1,30 @@
+/* الصورة الرئيسية */
+.main-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* الصور المصغرة */
+.thumbnail-image {
+  width: 250px; /* الحجم الثابت */
+  height: 150px; /* الحجم الثابت */
+  object-fit: cover;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+}
+
+  .thumbnail-image:hover {
+    border-color: #007bff; /* لون عند التحويم */
+  }
+
+/* عشان نرتب الصور المصغرة بشكل أفقي */
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}

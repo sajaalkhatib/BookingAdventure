@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+//import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -23,8 +25,17 @@ import { AdmainComponent } from './Admain/admain.component';
 import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
 import { EditeAdventureComponent } from './Admain/Adventure/edite-adventure/edite-adventure.component';
 //import { AddadventureComponent } from './Admain/addadventure/addadventure.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 ;
+import { ServiceComponent } from './service/service.component';
+import { FormsModule } from '@angular/forms';
+
+import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.component';
+import {  ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 
 @NgModule({
@@ -47,6 +58,9 @@ import { EditeAdventureComponent } from './Admain/Adventure/edite-adventure/edit
     GetAdventureComponent,
     EditeAdventureComponent,
     //AddadventureComponent,
+    ForgotPasswordComponent,
+    ServiceComponent,
+    AddAdventureComponent
 
   ],
   imports: [
@@ -54,6 +68,12 @@ import { EditeAdventureComponent } from './Admain/Adventure/edite-adventure/edit
     AppRoutingModule,
     CommonModule,
     FormsModule
+    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule,
+    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule 
+
   ],
   providers: [],
   bootstrap: [AppComponent]
