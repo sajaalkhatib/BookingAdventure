@@ -40,7 +40,7 @@
         <!-- Make entire card clickable -->
         <a [routerLink]="['/booking', adventure.id]" class="tour-card" style="display: block; text-decoration: none; cursor: pointer;">
           <div class="tour-img">
-            <img [src]="adventure.images?.length ? adventure.images[0] : 'assets/image/default.jpg'"
+            <img [src]="adventure.images.length ? adventure.images[0] : 'assets/image/default.jpg'"
                  alt="adventure image" />
             <div class="tour-content-hidden">
               <div class="content">
