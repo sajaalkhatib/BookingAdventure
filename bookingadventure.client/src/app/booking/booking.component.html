@@ -139,86 +139,48 @@
   <div class="container">
     <div class="row gy-md-5">
       <div class="col-lg-8">
-        <div class="package-details-area">
-          <div class="tab-content" id="myTab5Content">
-            <div class="tab-pane fade show active" id="city-one" role="tabpanel"
-                 aria-labelledby="city-one">
-              <div class="package-img">
-                <img src="assets/image/card-img/travel-image-one-big.png" alt="" />
+        <ng-container *ngIf="Adventure?.images as images">
+          <div class="package-details-area" *ngIf="images.length > 0">
+            <div class="tab-content" id="myTab5Content">
+              <div class="tab-pane fade"
+                   *ngFor="let image of images; let i = index"
+                   [id]="'city-' + (i + 1)"
+                   [class.show]="i === 0"
+                   [class.active]="i === 0"
+                   role="tabpanel"
+                   [attr.aria-labelledby]="'city-' + (i + 1) + '-Tab'">
+                <div class="package-img">
+                  <img [src]="image" alt="Adventure Image" class="main-image" />
+
+                </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="city-two" role="tabpanel" aria-labelledby="city-two">
-              <div class="package-img">
-                <img src="assets/image/card-img/travel-image-two-big.png" alt="" />
-              </div>
-            </div>
-            <div class="tab-pane fade" id="city-three" role="tabpanel" aria-labelledby="city-three">
-              <div class="package-img">
-                <img src="assets/image/card-img/travel-image-three-big.png" alt="" />
-              </div>
-            </div>
-            <div class="tab-pane fade" id="city-four" role="tabpanel" aria-labelledby="city-four">
-              <div class="package-img">
-                <img src="assets/image/card-img/travel-image-four-big.png" alt="" />
-              </div>
-            </div>
-            <div class="tab-pane fade" id="city-five" role="tabpanel" aria-labelledby="city-five">
-              <div class="package-img">
-                <img src="assets/image/card-img/travel-image-five-big.png" alt="" />
-              </div>
-            </div>
+
+
+            <ul class="nav nav-tabs" id="myTab5" role="tablist">
+              <li class="nav-item" *ngFor="let image of images; let i = index" role="presentation">
+                <button class="nav-link"
+                        [class.active]="i === 0"
+                        [id]="'city-' + (i + 1) + '-Tab'"
+                        data-bs-toggle="tab"
+                        [attr.data-bs-target]="'#city-' + (i + 1)"
+                        type="button"
+                        role="tab"
+                        [attr.aria-controls]="'city-' + (i + 1)"
+                        [attr.aria-selected]="i === 0 ? 'true' : 'false'">
+                  <img [src]="image" alt="Adventure Thumbnail" class="thumbnail-image" />
+
+                </button>
+              </li>
+            </ul>
           </div>
-          <ul class="nav nav-tabs" id="myTab5" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="city-one-Tab" data-bs-toggle="tab"
-                      data-bs-target="#city-one" type="button" role="tab" aria-controls="city-one"
-                      aria-selected="true">
-                <img src="assets/image/card-img/travel-image-one-small.png" alt="" />
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="city-two-Tab" data-bs-toggle="tab" data-bs-target="#city-two"
-                      type="button" role="tab" aria-controls="city-two" aria-selected="false">
-                <img src="assets/image/card-img/travel-image-two-small.png" alt="" />
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="city-three-Tab" data-bs-toggle="tab"
-                      data-bs-target="#city-three" type="button" role="tab" aria-controls="city-three"
-                      aria-selected="false">
-                <img src="assets/image/card-img/travel-image-three-small.png" alt="" />
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="city-four-Tab" data-bs-toggle="tab" data-bs-target="#city-four"
-                      type="button" role="tab" aria-controls="city-four" aria-selected="false">
-                <img src="assets/image/card-img/travel-image-four-small.png" alt="" />
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="city-five-Tab" data-bs-toggle="tab" data-bs-target="#city-five"
-                      type="button" role="tab" aria-controls="city-five" aria-selected="false">
-                <img src="assets/image/card-img/travel-image-five-small.png" alt="" />
-              </button>
-            </li>
-          </ul>
-        </div>
+        </ng-container>
+
+
         <ul class="location-area-and-share">
           <li class="left-side">
-            <div class="icon">
-              <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.14286 -0.00791785C8.16857 -0.00824153 8.19428 -0.00856522 8.22077 -0.00889871C8.7804 -0.0144941 9.31703 -0.010177 9.86202 0.132806C9.88707 0.139023 9.91211 0.14524 9.93792 0.151645C11.3272 0.500856 12.5908 1.42744 13.3298 2.6556C13.4062 2.78665 13.478 2.91987 13.5476 3.05468C13.5635 3.08548 13.5635 3.08548 13.5797 3.1169C13.9243 3.79448 14.1474 4.56355 14.152 5.32663C14.1522 5.35256 14.1524 5.37849 14.1527 5.40521C14.1602 6.48141 14.1602 6.48141 14.0456 6.93945C14.0392 6.96635 14.0328 6.99326 14.0262 7.02098C13.6695 8.48371 12.7623 9.72116 11.8402 10.8821C11.7552 10.9892 11.6717 11.0975 11.5886 11.206C11.3969 11.4561 11.2019 11.7035 11.0067 11.9508C10.9728 11.9938 10.9389 12.0368 10.905 12.0798C10.8731 12.1203 10.8412 12.1607 10.8092 12.2012C10.7448 12.2829 10.6835 12.3645 10.6257 12.4512C10.7657 12.4942 10.9055 12.5285 11.0489 12.5583C11.761 12.7062 12.4446 12.8924 13.0827 13.248C13.1139 13.2647 13.145 13.2813 13.1771 13.2985C13.58 13.5242 13.9828 13.8871 14.1313 14.3357C14.1978 14.6923 14.1618 15.0332 13.9697 15.342C13.921 15.4114 13.8688 15.475 13.8132 15.5391C13.7844 15.5737 13.7844 15.5737 13.755 15.6091C12.7731 16.6928 10.8322 16.9158 9.46359 17C9.32039 17.0048 9.1773 17.0062 9.03402 17.0067C8.99448 17.007 8.95493 17.0072 8.91418 17.0074C8.78742 17.008 8.66066 17.0082 8.5339 17.0083C8.46899 17.0083 8.46899 17.0083 8.40276 17.0084C7.78676 17.0079 7.18422 16.9979 6.57491 16.9004C6.53696 16.8947 6.49901 16.889 6.4599 16.8831C5.26472 16.7013 3.87174 16.3934 3.07199 15.4042C2.85784 15.0893 2.81907 14.7826 2.85617 14.4102C2.91088 14.1765 3.03251 13.9918 3.1882 13.8125C3.21702 13.7778 3.21702 13.7778 3.24643 13.7425C3.99438 12.9169 5.30269 12.6734 6.34249 12.4844C6.34249 12.347 6.2868 12.3091 6.19723 12.2063C6.16629 12.1702 6.13543 12.1341 6.10462 12.0979C6.08882 12.0793 6.07302 12.0608 6.05673 12.0416C5.97188 11.9402 5.89226 11.8348 5.81207 11.7296C5.7981 11.7113 5.78413 11.693 5.76974 11.6741C5.75519 11.6551 5.74063 11.636 5.72564 11.6163C5.63585 11.4991 5.54502 11.3827 5.45431 11.2662C5.43466 11.241 5.415 11.2157 5.39475 11.1896C5.29537 11.0618 5.19575 10.9342 5.09569 10.807C4.01685 9.43237 2.86686 7.84704 2.84825 6.02506C2.84793 5.99867 2.8476 5.97227 2.84727 5.94507C2.84172 5.37851 2.84366 4.83469 2.98898 4.2832C2.99539 4.25656 3.0018 4.22993 3.0084 4.20249C3.2138 3.3556 3.64747 2.57997 4.21749 1.92578C4.25884 1.87775 4.25884 1.87775 4.30102 1.82876C5.2403 0.758261 6.70594 0.00708619 8.14286 -0.00791785ZM4.91476 2.1914C3.93243 3.19042 3.53295 4.51151 3.54113 5.88358C3.55187 6.74219 3.81397 7.51775 4.21749 8.26757C4.22904 8.28934 4.24059 8.31111 4.2525 8.33354C4.75144 9.26955 5.44337 10.1039 6.09869 10.9337C6.17459 11.0299 6.25023 11.1263 6.32589 11.2227C6.41751 11.3393 6.50917 11.4559 6.60098 11.5725C6.78752 11.8093 6.9728 12.047 7.15595 12.2864C7.19213 12.3337 7.22833 12.381 7.26454 12.4282C7.67323 12.9615 8.07362 13.5006 8.46749 14.0449C8.5954 14.0023 8.63398 13.9278 8.70614 13.8208C8.8541 13.6075 9.00893 13.4002 9.16683 13.1941C9.21314 13.1336 9.25944 13.0731 9.30574 13.0126C9.32744 12.9843 9.34913 12.956 9.37148 12.9268C9.44299 12.8331 9.51358 12.7387 9.58395 12.6442C9.76341 12.4041 9.94842 12.1683 10.1328 11.932C10.2133 11.8288 10.2935 11.7255 10.3738 11.6222C10.5292 11.4222 10.6849 11.2225 10.8415 11.0234C10.8863 10.9665 10.9311 10.9095 10.9758 10.8525C11.0097 10.8094 11.0436 10.7663 11.0775 10.7231C12.0106 9.53544 12.9712 8.29517 13.3484 6.80663C13.3543 6.78377 13.3603 6.7609 13.3664 6.73734C13.6632 5.54025 13.4128 4.16106 12.7869 3.11288C12.6116 2.83108 12.4138 2.57232 12.1865 2.33031C12.1198 2.25781 12.1198 2.25781 12.052 2.1722C11.3975 1.36222 10.1821 0.832774 9.17345 0.707506C9.13771 0.704124 9.10197 0.700743 9.06515 0.697259C9.04412 0.695082 9.02309 0.692904 9.00142 0.690661C7.46829 0.539201 6.00207 1.1188 4.91476 2.1914ZM3.81906 14.1777C3.6314 14.3728 3.54015 14.4831 3.54448 14.758C3.55796 14.8842 3.60333 14.9457 3.68624 15.041C3.70251 15.061 3.71877 15.081 3.73553 15.1016C4.57572 16.0477 6.39865 16.2167 7.57101 16.3027C9.27008 16.3973 11.7697 16.4241 13.1388 15.2174C13.304 15.0613 13.4505 14.9224 13.4625 14.6882C13.4599 14.4877 13.3854 14.3846 13.2487 14.2441C13.221 14.2151 13.221 14.2151 13.1927 14.1854C12.4924 13.5168 11.3571 13.3049 10.4376 13.161C10.3866 13.1527 10.3358 13.1432 10.2853 13.1324C10.2073 13.1157 10.2073 13.1157 10.0944 13.1152C10.0119 13.1711 10.0119 13.1711 9.95333 13.2626C9.91584 13.3133 9.91584 13.3133 9.87759 13.365C9.86441 13.3837 9.85122 13.4023 9.83764 13.4215C9.79402 13.4827 9.74892 13.5425 9.70327 13.6021C9.50256 13.8651 9.309 14.1331 9.11592 14.4017C8.71023 14.9649 8.71023 14.9649 8.59577 14.9904C8.47394 14.9975 8.37572 15.0032 8.27281 14.9315C8.20951 14.8608 8.15612 14.7872 8.10226 14.709C8.07859 14.6763 8.05492 14.6437 8.03054 14.61C7.97491 14.5332 7.92001 14.4558 7.86543 14.3782C7.7398 14.2003 7.60999 14.0255 7.48037 13.8504C7.38504 13.7216 7.29018 13.5925 7.19683 13.4623C7.18007 13.439 7.16331 13.4158 7.14604 13.3918C7.11459 13.3481 7.08331 13.3042 7.05222 13.2602C7.01647 13.2107 6.97852 13.1628 6.94015 13.1152C5.96087 13.1152 4.5484 13.4999 3.81906 14.1777Z"
-                      fill="#666666"></path>
-                <path d="M9.88687 3.72926C10.0082 3.8288 10.1177 3.9379 10.2265 4.05079C10.2486 4.0718 10.2706 4.09282 10.2933 4.11447C10.7251 4.55398 10.8408 5.1606 10.8357 5.75128C10.8202 6.40627 10.5602 6.9212 10.0937 7.3711C10.0727 7.39314 10.0517 7.41518 10.03 7.43789C9.59054 7.86964 8.98392 7.98532 8.39324 7.9803C7.73825 7.96476 7.22332 7.70478 6.77342 7.23829C6.75137 7.21727 6.72933 7.19626 6.70662 7.1746C6.27487 6.7351 6.15919 6.12847 6.16422 5.53779C6.17975 4.88281 6.43974 4.36788 6.90623 3.91797C6.92724 3.89593 6.94826 3.87389 6.96991 3.85118C7.71478 3.11947 9.07394 3.12466 9.88687 3.72926ZM7.80271 4.1504C7.77425 4.16486 7.74579 4.17933 7.71646 4.19423C7.39109 4.37386 7.17338 4.61764 7.00584 4.94727C6.99206 4.97334 6.97828 4.9994 6.96408 5.02626C6.81328 5.36319 6.80873 5.83113 6.92698 6.17994C6.9515 6.23472 6.97779 6.28875 7.00584 6.3418C7.02754 6.3845 7.02754 6.3845 7.04968 6.42805C7.27944 6.84427 7.6312 7.09708 8.07807 7.24646C8.51089 7.367 8.93029 7.28565 9.32124 7.07396C9.72559 6.82003 9.98171 6.4718 10.1114 6.01371C10.1877 5.66804 10.1571 5.26005 9.99412 4.94727C9.97965 4.91877 9.96519 4.89026 9.95028 4.86089C9.77046 4.53563 9.52691 4.31796 9.19725 4.1504C9.17118 4.13661 9.14511 4.12283 9.11826 4.10863C8.72582 3.93299 8.18119 3.95028 7.80271 4.1504Z"
-                      fill="#666666"></path>
-                <path d="M9.99334 1.56049C11.0478 1.92297 11.9232 2.73904 12.4148 3.73231C12.6765 4.29252 12.8197 4.88427 12.8322 5.50128C12.8332 5.53268 12.8343 5.56407 12.8353 5.59641C12.8353 5.74732 12.8316 5.82125 12.7419 5.9468C12.6177 6.03146 12.5428 6.03355 12.3965 6.02592C12.2731 6.00059 12.2217 5.94554 12.1515 5.84369C12.115 5.71181 12.1091 5.57636 12.0986 5.44047C12.0229 4.49181 11.6675 3.6878 10.9894 3.02143C10.9642 2.99622 10.9389 2.97101 10.9129 2.94503C10.5885 2.63903 10.1818 2.43916 9.78011 2.25386C9.54837 2.14476 9.54837 2.14476 9.49529 2.02533C9.47763 1.86636 9.47122 1.79742 9.55755 1.66217C9.68835 1.53522 9.81886 1.53288 9.99334 1.56049Z"
-                      fill="#666666"></path>
-                <path d="M8.69922 1.32813C8.80298 1.39038 8.80298 1.39038 8.86523 1.49414C8.89806 1.66103 8.89103 1.78318 8.80298 1.92993C8.65682 2.01763 8.53349 2.02605 8.36719 1.99219C8.25382 1.91353 8.21301 1.86021 8.16797 1.73071C8.16797 1.59697 8.20452 1.51165 8.26758 1.39453C8.409 1.30025 8.53333 1.30356 8.69922 1.32813Z"
-                      fill="#666666"></path>
-              </svg>
-            </div>
-            <span>Paris, France <a id="scroll-btn">See on map</a></span>
+
+            <span>{{ Adventure?.title || 'Default Title' }}</span>
           </li>
           <li class="right-side">
             <div class="share">
@@ -281,11 +243,7 @@
               </div>
             </div>
 
-            <a href="#" class="add">
-              <i class="bi bi-heart"></i>
-              Add To Wishlist
-            </a>
-          </li>
+
         </ul>
         <ul class="feature-area-wrap">
           <li class="single-feature">
@@ -320,8 +278,9 @@
             </div>
             <div class="content">
               <span>From</span>
-              <h6>$699 / <span>Per Person</span></h6>
+              <h6>${{ Adventure?.price || 'Not Available' }} / <span>Per Person</span></h6>
             </div>
+
           </li>
           <li class="single-feature">
             <div class="icon two">
@@ -341,8 +300,9 @@
             </div>
             <div class="content">
               <span>Duration</span>
-              <h6>5 Days</h6>
+              <h6>{{ Adventure?.duration || 'Not Available' }} Days</h6> <!-- عرض المدة ديناميكيًا -->
             </div>
+
           </li>
           <li class="single-feature">
             <div class="icon three">
@@ -358,8 +318,9 @@
             </div>
             <div class="content">
               <span>Group Size</span>
-              <h6>12 People</h6>
+              <h6>{{ Adventure?.maxParticipants || 'Not Available' }} People</h6> <!-- عرض حجم المجموعة ديناميكيًا -->
             </div>
+
           </li>
           <li class="single-feature">
             <div class="icon four">
@@ -369,192 +330,35 @@
                       fill="#3AA6EB" />
               </svg>
             </div>
+
             <div class="content">
               <span>Tour Type</span>
-              <h6>City Tour</h6>
+              <h6>{{ Adventure?.typeName || 'Default Type' }}</h6> <!-- عرض عنوان الرحلة ديناميكيًا -->
             </div>
+
           </li>
         </ul>
         <div class="overview-area">
           <h3>Overview</h3>
-          <div class="first-paragraph">
-            <p>
-              Our Deluxe rooms feature large windows, offering stunning
-              views of the city and nature. Enjoy extra space with a bigger
-              bed, and unwind in a luxurious bathroom equipped with both a
-              bathtub and shower for ultimate relaxation after a long day.
-            </p>
-          </div>
-          <div class="second-paragraph">
-            <p>
-              Travel and tourism encompass the planning, organization, and
-              enjoyment of journeys to diverse destinations for relaxation,
-              adventure, exploration, or cultural experiences. Select your
-              ideal getaway based on your passions—whether it's discovering
-              history, immersing in nature, embarking on thrilling
-              adventures, or unwinding by the sea.
-            </p>
-          </div>
-        </div>
-        <div class="hightlights-area">
-          <h3>Highlights</h3>
           <p>
-            Skip the guidebooks and immerse yourself in the vibrant local
-            cultures that make every destination unique. Our exclusive
-            experiences bring you closer to the heart of each place, with
-            every trip thoughtfully designed for a truly unforgettable
-            getaway.
+            {{ Adventure?.overview }}
           </p>
-          <ul class="hightlight-area">
-            <li class="single-hightlight">
+        </div>
+
+        <div class="highlights-area">
+          <h3>Highlights</h3>
+          <ul class="highlight-area">
+            <li *ngFor="let highlight of highlightsJsonParsed" class="single-highlight">
               <div class="icon">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.59635 7.87087C2.30296 7.8717 2.01579 7.95557 1.76807 8.11279C1.52035 8.27001 1.32221 8.49415 1.19656 8.75929C1.07092 9.02442 1.02291 9.31971 1.05808 9.61099C1.09326 9.90228 1.21019 10.1776 1.39534 10.4052L5.34228 15.2402C5.48301 15.415 5.6634 15.5536 5.86847 15.6447C6.07353 15.7357 6.29736 15.7765 6.52136 15.7636C7.00043 15.7379 7.43295 15.4816 7.70871 15.0602L15.9075 1.85608C15.9089 1.85387 15.9103 1.85169 15.9117 1.84954C15.9886 1.73142 15.9637 1.49734 15.8049 1.35029C15.7613 1.30991 15.7099 1.27889 15.6538 1.25913C15.5977 1.23938 15.5382 1.23131 15.4789 1.23542C15.4196 1.23953 15.3618 1.25574 15.309 1.28305C15.2562 1.31036 15.2095 1.34818 15.1719 1.3942C15.169 1.39782 15.1659 1.40138 15.1628 1.40489L6.89421 10.7472C6.86275 10.7827 6.82454 10.8117 6.78179 10.8323C6.73905 10.853 6.69263 10.8649 6.64522 10.8675C6.59782 10.8701 6.55038 10.8632 6.50565 10.8473C6.46093 10.8313 6.41982 10.8067 6.38471 10.7747L3.64051 8.2775C3.3555 8.01624 2.98299 7.87117 2.59635 7.87087Z"
-                        fill="#4DA627" />
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path [attr.d]="highlight.iconPath" [attr.fill]="highlight.iconColor"></path>
                 </svg>
               </div>
-              <span>
-                Discover the charming landscapes and scenic countryside of
-                France.
-              </span>
-            </li>
-            <li class="single-hightlight">
-              <div class="icon">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.59635 7.87087C2.30296 7.8717 2.01579 7.95557 1.76807 8.11279C1.52035 8.27001 1.32221 8.49415 1.19656 8.75929C1.07092 9.02442 1.02291 9.31971 1.05808 9.61099C1.09326 9.90228 1.21019 10.1776 1.39534 10.4052L5.34228 15.2402C5.48301 15.415 5.6634 15.5536 5.86847 15.6447C6.07353 15.7357 6.29736 15.7765 6.52136 15.7636C7.00043 15.7379 7.43295 15.4816 7.70871 15.0602L15.9075 1.85608C15.9089 1.85387 15.9103 1.85169 15.9117 1.84954C15.9886 1.73142 15.9637 1.49734 15.8049 1.35029C15.7613 1.30991 15.7099 1.27889 15.6538 1.25913C15.5977 1.23938 15.5382 1.23131 15.4789 1.23542C15.4196 1.23953 15.3618 1.25574 15.309 1.28305C15.2562 1.31036 15.2095 1.34818 15.1719 1.3942C15.169 1.39782 15.1659 1.40138 15.1628 1.40489L6.89421 10.7472C6.86275 10.7827 6.82454 10.8117 6.78179 10.8323C6.73905 10.853 6.69263 10.8649 6.64522 10.8675C6.59782 10.8701 6.55038 10.8632 6.50565 10.8473C6.46093 10.8313 6.41982 10.8067 6.38471 10.7747L3.64051 8.2775C3.3555 8.01624 2.98299 7.87117 2.59635 7.87087Z"
-                        fill="#4DA627" />
-                </svg>
-              </div>
-              <span>
-                Enjoy breathtaking panoramas from the iconic
-                landmark.
-              </span>
-            </li>
-            <li class="single-hightlight">
-              <div class="icon">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.59635 7.87087C2.30296 7.8717 2.01579 7.95557 1.76807 8.11279C1.52035 8.27001 1.32221 8.49415 1.19656 8.75929C1.07092 9.02442 1.02291 9.31971 1.05808 9.61099C1.09326 9.90228 1.21019 10.1776 1.39534 10.4052L5.34228 15.2402C5.48301 15.415 5.6634 15.5536 5.86847 15.6447C6.07353 15.7357 6.29736 15.7765 6.52136 15.7636C7.00043 15.7379 7.43295 15.4816 7.70871 15.0602L15.9075 1.85608C15.9089 1.85387 15.9103 1.85169 15.9117 1.84954C15.9886 1.73142 15.9637 1.49734 15.8049 1.35029C15.7613 1.30991 15.7099 1.27889 15.6538 1.25913C15.5977 1.23938 15.5382 1.23131 15.4789 1.23542C15.4196 1.23953 15.3618 1.25574 15.309 1.28305C15.2562 1.31036 15.2095 1.34818 15.1719 1.3942C15.169 1.39782 15.1659 1.40138 15.1628 1.40489L6.89421 10.7472C6.86275 10.7827 6.82454 10.8117 6.78179 10.8323C6.73905 10.853 6.69263 10.8649 6.64522 10.8675C6.59782 10.8701 6.55038 10.8632 6.50565 10.8473C6.46093 10.8313 6.41982 10.8067 6.38471 10.7747L3.64051 8.2775C3.3555 8.01624 2.98299 7.87117 2.59635 7.87087Z"
-                        fill="#4DA627" />
-                </svg>
-              </div>
-              <span>Explore world-famous art, including the Mona Lisa.</span>
-            </li>
-            <li class="single-hightlight">
-              <div class="icon">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.59635 7.87087C2.30296 7.8717 2.01579 7.95557 1.76807 8.11279C1.52035 8.27001 1.32221 8.49415 1.19656 8.75929C1.07092 9.02442 1.02291 9.31971 1.05808 9.61099C1.09326 9.90228 1.21019 10.1776 1.39534 10.4052L5.34228 15.2402C5.48301 15.415 5.6634 15.5536 5.86847 15.6447C6.07353 15.7357 6.29736 15.7765 6.52136 15.7636C7.00043 15.7379 7.43295 15.4816 7.70871 15.0602L15.9075 1.85608C15.9089 1.85387 15.9103 1.85169 15.9117 1.84954C15.9886 1.73142 15.9637 1.49734 15.8049 1.35029C15.7613 1.30991 15.7099 1.27889 15.6538 1.25913C15.5977 1.23938 15.5382 1.23131 15.4789 1.23542C15.4196 1.23953 15.3618 1.25574 15.309 1.28305C15.2562 1.31036 15.2095 1.34818 15.1719 1.3942C15.169 1.39782 15.1659 1.40138 15.1628 1.40489L6.89421 10.7472C6.86275 10.7827 6.82454 10.8117 6.78179 10.8323C6.73905 10.853 6.69263 10.8649 6.64522 10.8675C6.59782 10.8701 6.55038 10.8632 6.50565 10.8473C6.46093 10.8313 6.41982 10.8067 6.38471 10.7747L3.64051 8.2775C3.3555 8.01624 2.98299 7.87117 2.59635 7.87087Z"
-                        fill="#4DA627" />
-                </svg>
-              </div>
-              <span>
-                Stroll along the famous avenue and admire the majestic
-                monument.
-              </span>
+              <span>{{ highlight }}</span> <!-- عرض كل highlight كنص -->
             </li>
           </ul>
         </div>
-        <div class="included-area">
-          <h3>Included and Excluded</h3>
-          <div class="included-featured">
-            <ul class="single-success">
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58897 0 0 3.58897 0 8C0 12.411 3.58897 16 8 16C12.411 16 16 12.411 16 8C16 3.58897 12.411 0 8 0ZM12.4712 5.89474L7.3584 10.9674C7.05764 11.2682 6.57644 11.2882 6.25564 10.9875L3.54887 8.5213C3.22807 8.22055 3.20802 7.7193 3.48872 7.3985C3.78947 7.07769 4.29073 7.05764 4.61153 7.3584L6.75689 9.32331L11.3283 4.75188C11.6491 4.43108 12.1504 4.43108 12.4712 4.75188C12.792 5.07268 12.792 5.57393 12.4712 5.89474Z"
-                          fill="#4DA627" />
-                  </svg>
-                </div>
-                <span>Expert insights throughout your journey.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58897 0 0 3.58897 0 8C0 12.411 3.58897 16 8 16C12.411 16 16 12.411 16 8C16 3.58897 12.411 0 8 0ZM12.4712 5.89474L7.3584 10.9674C7.05764 11.2682 6.57644 11.2882 6.25564 10.9875L3.54887 8.5213C3.22807 8.22055 3.20802 7.7193 3.48872 7.3985C3.78947 7.07769 4.29073 7.05764 4.61153 7.3584L6.75689 9.32331L11.3283 4.75188C11.6491 4.43108 12.1504 4.43108 12.4712 4.75188C12.792 5.07268 12.792 5.57393 12.4712 5.89474Z"
-                          fill="#4DA627" />
-                  </svg>
-                </div>
-                <span>Relaxing boat ride with scenic city views.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58897 0 0 3.58897 0 8C0 12.411 3.58897 16 8 16C12.411 16 16 12.411 16 8C16 3.58897 12.411 0 8 0ZM12.4712 5.89474L7.3584 10.9674C7.05764 11.2682 6.57644 11.2882 6.25564 10.9875L3.54887 8.5213C3.22807 8.22055 3.20802 7.7193 3.48872 7.3985C3.78947 7.07769 4.29073 7.05764 4.61153 7.3584L6.75689 9.32331L11.3283 4.75188C11.6491 4.43108 12.1504 4.43108 12.4712 4.75188C12.792 5.07268 12.792 5.57393 12.4712 5.89474Z"
-                          fill="#4DA627" />
-                  </svg>
-                </div>
-                <span>Fast access to top attractions like the Louvre.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58897 0 0 3.58897 0 8C0 12.411 3.58897 16 8 16C12.411 16 16 12.411 16 8C16 3.58897 12.411 0 8 0ZM12.4712 5.89474L7.3584 10.9674C7.05764 11.2682 6.57644 11.2882 6.25564 10.9875L3.54887 8.5213C3.22807 8.22055 3.20802 7.7193 3.48872 7.3985C3.78947 7.07769 4.29073 7.05764 4.61153 7.3584L6.75689 9.32331L11.3283 4.75188C11.6491 4.43108 12.1504 4.43108 12.4712 4.75188C12.792 5.07268 12.792 5.57393 12.4712 5.89474Z"
-                          fill="#4DA627" />
-                  </svg>
-                </div>
-                <span>Enjoy delicious morning meals at your hotel.</span>
-              </li>
-            </ul>
-            <ul class="single-error">
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58875 0 0 3.58875 0 8C0 12.4113 3.58875 16 8 16C12.4113 16 16 12.4113 16 8C16 3.58875 12.4113 0 8 0ZM11.5013 10.655C11.735 10.8888 11.735 11.2675 11.5013 11.5013C11.3846 11.6179 11.2312 11.6767 11.0779 11.6767C10.9246 11.6767 10.7717 11.6183 10.6546 11.5013L8.06458 8.91125C8.02875 8.87542 7.97083 8.87542 7.935 8.91125L5.345 11.5013C5.22833 11.6183 5.075 11.6767 4.92167 11.6767C4.76833 11.6767 4.61542 11.6183 4.49833 11.5013C4.26458 11.2675 4.26458 10.8888 4.49833 10.655L7.08833 8.065C7.12417 8.02917 7.12417 7.97125 7.08833 7.93542L4.49833 5.34542C4.26458 5.11167 4.26458 4.73292 4.49833 4.49917C4.73208 4.26542 5.11083 4.26542 5.34458 4.49917L7.93458 7.08917C7.97042 7.125 8.02833 7.125 8.06417 7.08917L10.6542 4.49917C10.8879 4.26542 11.2667 4.26542 11.5004 4.49917C11.7342 4.73292 11.7342 5.11167 11.5004 5.34542L8.91042 7.93542C8.87458 7.97125 8.87458 8.02917 8.91042 8.065L11.5013 10.655Z"
-                          fill="#F44336" />
-                  </svg>
-                </div>
-                <span>Airfare to and from Paris is not included.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58875 0 0 3.58875 0 8C0 12.4113 3.58875 16 8 16C12.4113 16 16 12.4113 16 8C16 3.58875 12.4113 0 8 0ZM11.5013 10.655C11.735 10.8888 11.735 11.2675 11.5013 11.5013C11.3846 11.6179 11.2312 11.6767 11.0779 11.6767C10.9246 11.6767 10.7717 11.6183 10.6546 11.5013L8.06458 8.91125C8.02875 8.87542 7.97083 8.87542 7.935 8.91125L5.345 11.5013C5.22833 11.6183 5.075 11.6767 4.92167 11.6767C4.76833 11.6767 4.61542 11.6183 4.49833 11.5013C4.26458 11.2675 4.26458 10.8888 4.49833 10.655L7.08833 8.065C7.12417 8.02917 7.12417 7.97125 7.08833 7.93542L4.49833 5.34542C4.26458 5.11167 4.26458 4.73292 4.49833 4.49917C4.73208 4.26542 5.11083 4.26542 5.34458 4.49917L7.93458 7.08917C7.97042 7.125 8.02833 7.125 8.06417 7.08917L10.6542 4.49917C10.8879 4.26542 11.2667 4.26542 11.5004 4.49917C11.7342 4.73292 11.7342 5.11167 11.5004 5.34542L8.91042 7.93542C8.87458 7.97125 8.87458 8.02917 8.91042 8.065L11.5013 10.655Z"
-                          fill="#F44336" />
-                  </svg>
-                </div>
-                <span>Shopping, souvenirs, and extra meals.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58875 0 0 3.58875 0 8C0 12.4113 3.58875 16 8 16C12.4113 16 16 12.4113 16 8C16 3.58875 12.4113 0 8 0ZM11.5013 10.655C11.735 10.8888 11.735 11.2675 11.5013 11.5013C11.3846 11.6179 11.2312 11.6767 11.0779 11.6767C10.9246 11.6767 10.7717 11.6183 10.6546 11.5013L8.06458 8.91125C8.02875 8.87542 7.97083 8.87542 7.935 8.91125L5.345 11.5013C5.22833 11.6183 5.075 11.6767 4.92167 11.6767C4.76833 11.6767 4.61542 11.6183 4.49833 11.5013C4.26458 11.2675 4.26458 10.8888 4.49833 10.655L7.08833 8.065C7.12417 8.02917 7.12417 7.97125 7.08833 7.93542L4.49833 5.34542C4.26458 5.11167 4.26458 4.73292 4.49833 4.49917C4.73208 4.26542 5.11083 4.26542 5.34458 4.49917L7.93458 7.08917C7.97042 7.125 8.02833 7.125 8.06417 7.08917L10.6542 4.49917C10.8879 4.26542 11.2667 4.26542 11.5004 4.49917C11.7342 4.73292 11.7342 5.11167 11.5004 5.34542L8.91042 7.93542C8.87458 7.97125 8.87458 8.02917 8.91042 8.065L11.5013 10.655Z"
-                          fill="#F44336" />
-                  </svg>
-                </div>
-                <span>Recommended but not covered in the package.</span>
-              </li>
-              <li class="single-item">
-                <div class="icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                       xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 0C3.58875 0 0 3.58875 0 8C0 12.4113 3.58875 16 8 16C12.4113 16 16 12.4113 16 8C16 3.58875 12.4113 0 8 0ZM11.5013 10.655C11.735 10.8888 11.735 11.2675 11.5013 11.5013C11.3846 11.6179 11.2312 11.6767 11.0779 11.6767C10.9246 11.6767 10.7717 11.6183 10.6546 11.5013L8.06458 8.91125C8.02875 8.87542 7.97083 8.87542 7.935 8.91125L5.345 11.5013C5.22833 11.6183 5.075 11.6767 4.92167 11.6767C4.76833 11.6767 4.61542 11.6183 4.49833 11.5013C4.26458 11.2675 4.26458 10.8888 4.49833 10.655L7.08833 8.065C7.12417 8.02917 7.12417 7.97125 7.08833 7.93542L4.49833 5.34542C4.26458 5.11167 4.26458 4.73292 4.49833 4.49917C4.73208 4.26542 5.11083 4.26542 5.34458 4.49917L7.93458 7.08917C7.97042 7.125 8.02833 7.125 8.06417 7.08917L10.6542 4.49917C10.8879 4.26542 11.2667 4.26542 11.5004 4.49917C11.7342 4.73292 11.7342 5.11167 11.5004 5.34542L8.91042 7.93542C8.87458 7.97125 8.87458 8.02917 8.91042 8.065L11.5013 10.655Z"
-                          fill="#F44336" />
-                  </svg>
-                </div>
-                <span>Additional tours or experiences not listed.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="itinerary-area">
-          <h3>Itinerary</h3>
-          <p>
-            Start and end in London! This 11-day European Discovery Tour takes you through London and 10
-            stunning destinations, with expert guides, comfortable stays, meals, and seamless transport
-            for an unforgettable journey.
-          </p>
 
-        </div>
         <div class="faq-wrappaer">
           <div class="faq-area">
             <div class="faq-wrap">
@@ -703,7 +507,7 @@
         </div>
         <div class="customer-reviews-wrap" id="scroll-section">
           <h3>Customer Reviews</h3>
-          <div >
+          <div>
             <div class="border-area">
               <div class="review-content">
                 <div class="star-area mb-2">
@@ -742,11 +546,11 @@
                            *ngFor="let star of [1,2,3,4,5]"
                            [ngClass]="{
                            'bi-star-fill' : star <= newReview.rating,
-        'bi-star': star > newReview.rating
-      }"
-      (click)="newReview.rating = star"
-      style="font-size: 1.5rem; color: gold; margin-right: 5px;"
-    ></i>
+    'bi-star': star > newReview.rating
+  }"
+  (click)="newReview.rating = star"
+  style="font-size: 1.5rem; color: gold; margin-right: 5px;"
+></i>
                       </div>
                     </div>
 
@@ -757,66 +561,66 @@
                   <hr />
 
                   <!--<h4 class="mt-4">All Reviews</h4>
-    <div *ngFor="let review of reviews" class="border p-3 mb-2 rounded">
-      <strong>{{ review.name }}</strong>
-      <p>{{ review.comment }}</p>
-      <span class="badge bg-warning text-dark">Rating: {{ review.rating }}/5</span>
-      <small class="d-block text-muted">{{ review.reviewDate | date:'short' }}</small>
-    </div>-->
+            <div *ngFor="let review of reviews" class="border p-3 mb-2 rounded">
+              <strong>{{ review.name }}</strong>
+              <p>{{ review.comment }}</p>
+              <span class="badge bg-warning text-dark">Rating: {{ review.rating }}/5</span>
+              <small class="d-block text-muted">{{ review.reviewDate | date:'short' }}</small>
+            </div>-->
                 </div>
 
               </div>
               <!--<div class="skill-wrapper">
-                <div class="progress-item">
-                  <h6>Location</h6>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
-                  </div>
-                  <span>4.7</span>
-                </div>
-                <div class="progress-item">
-                  <h6>Services</h6>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
-                  </div>
-                  <span>4.5</span>
-                </div>
-                <div class="progress-item">
-                  <h6>Amenities</h6>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
-                  </div>
-                  <span>4.8</span>
-                </div>
-                <div class="progress-item">
-                  <h6>Price</h6>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
-                  </div>
-                  <span>4.6</span>
-                </div>
-                <div class="progress-item">
-                  <h6>Rooms</h6>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
-                  </div>
-                  <span>4.6</span>
-                </div>
-              </div>-->
+          <div class="progress-item">
+            <h6>Location</h6>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                   aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
+            </div>
+            <span>4.7</span>
+          </div>
+          <div class="progress-item">
+            <h6>Services</h6>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                   aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
+            </div>
+            <span>4.5</span>
+          </div>
+          <div class="progress-item">
+            <h6>Amenities</h6>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                   aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
+            </div>
+            <span>4.8</span>
+          </div>
+          <div class="progress-item">
+            <h6>Price</h6>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                   aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
+            </div>
+            <span>4.6</span>
+          </div>
+          <div class="progress-item">
+            <h6>Rooms</h6>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                   aria-valuemin="0" aria-valuemax="100" style="max-width:80%;"></div>
+            </div>
+            <span>4.6</span>
+          </div>
+        </div>-->
             </div>
           </div>
 
         </div>
-     
+
 
         <!--Ahmad-->
         <div class="comment-area mt-4">
-          <h4 class="mb-3">Customer Reviews</h4>
+          <h4 class="mb-3">Customer Comments</h4>
 
           <div *ngFor="let review of reviews" class="single-comment">
             <div class="image">
@@ -840,216 +644,9 @@
             </div>
           </div>
         </div>
-
-
-
-        <!--<div class="leave-and-feedback-area">
-          <h3>Leave a Feedback</h3>
-          <p>Your email address will not be published. Required fields are marked *</p>
-        </div>-->
-
-        <!--=>-->
-
-        <!--<div class="contact-form-wrapper">
-    <form>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="form-inner">
-            <div class="input-area">
-              <input type="text" placeholder="Your name*">
-            </div>
-          </div>
+        <div class="contact-form-wrapper">
+          
         </div>
-        <div class="col-md-6">
-          <div class="form-inner">
-            <div class="input-area">
-              <input type="email" placeholder="hello@example.com*">
-            </div>
-          </div>
-        </div>
-        <ul class="review-area">
-          <li class="single-review">
-            <span>Location</span>
-            <div class="star" id="star-1">
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-            </div>
-          </li>
-          <li class="single-review">
-            <span>Services</span>
-            <div class="star">
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-            </div>
-          </li>
-          <li class="single-review">
-            <span>Amenities</span>
-            <div class="star">
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-            </div>
-          </li>
-          <li class="single-review">
-            <span>Price</span>
-            <div class="star">
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-            </div>
-          </li>
-          <li class="single-review">
-            <span>Rooms</span>
-            <div class="star">
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-              <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.52447 0.463524C6.67415 0.00286841 7.32585 0.00286996 7.47553 0.463525L8.68386 4.18237C8.75079 4.38838 8.94277 4.52786 9.15938 4.52786H13.0696C13.554 4.52786 13.7554 5.14767 13.3635 5.43237L10.2001 7.73075C10.0248 7.85807 9.95149 8.08375 10.0184 8.28976L11.2268 12.0086C11.3764 12.4693 10.8492 12.8523 10.4573 12.5676L7.29389 10.2693C7.11865 10.1419 6.88135 10.1419 6.70611 10.2693L3.54267 12.5676C3.15081 12.8523 2.62357 12.4693 2.77325 12.0086L3.98157 8.28976C4.04851 8.08375 3.97518 7.85807 3.79994 7.73075L0.636495 5.43237C0.244639 5.14767 0.446028 4.52786 0.93039 4.52786H4.84062C5.05723 4.52786 5.24921 4.38838 5.31614 4.18237L6.52447 0.463524Z"
-                      fill="#999999" />
-              </svg>
-            </div>
-          </li>
-        </ul>
-        <div class="col-md-12">
-          <div class="form-inner">
-            <textarea placeholder="Describe your review *"></textarea>
-          </div>
-        </div>
-        <div class="col-lg-12 mb-20">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="contactCheck">
-            <label class="form-check-label" for="contactCheck">
-              Save my name, email, and website in this browser for the next time I
-              comment.
-            </label>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="form-inner">
-            <button class="primary-submit seven" type="submit">
-              Submit
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.444 7.36756H1.10379C0.624605 7.36756 0.236328 6.97928 0.236328 6.50009C0.236328 6.02091 0.624605 5.63263 1.10379 5.63263H11.444C11.9232 5.63263 12.3114 6.02091 12.3114 6.50009C12.3114 6.97928 11.9232 7.36756 11.444 7.36756Z"
-                      fill="white"></path>
-                <path d="M7.4717 11.4707C7.35221 11.4708 7.23399 11.4462 7.12448 11.3985C7.01496 11.3507 6.91651 11.2808 6.83532 11.1931C6.5095 10.842 6.53032 10.293 6.88147 9.96722L10.6105 6.50881L6.7687 3.04103C6.41304 2.72007 6.38494 2.17148 6.7059 1.81582C7.02686 1.46016 7.57544 1.43205 7.9311 1.75302L12.4766 5.85613C12.6574 6.01921 12.7611 6.25065 12.7629 6.49423C12.7646 6.73782 12.664 6.97064 12.4853 7.13616L8.06122 11.2393C7.90106 11.3882 7.69041 11.4709 7.4717 11.4707Z"
-                      fill="white"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>-->
         <div class="bottom-card">
           <h3>You May Also Like</h3>
           <div class="row g-4">
@@ -1217,7 +814,7 @@
               <div class="tour-date-wrap">
                 <div class="form-check customdate">
                   <div class="celender-icon">
-                  
+
                   </div>
                   <span class="form-group">
                     <input type="date"
@@ -1333,24 +930,6 @@
             </form>
 
           </div>
-        </div>
-        <div class="booking-info-card">
-          <img src="assets/image/card-img/booking-girl-image.png" alt="">
-          <div class="bottom-content">
-            <div class="icon">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.59034 2.12434C7.04011 2.50683 7.4557 2.93011 7.87372 3.3465C7.92033 3.39286 7.92033 3.39286 7.96788 3.44016C8.13183 3.60325 8.29565 3.76647 8.45934 3.92982C8.627 4.09708 8.79512 4.26386 8.96336 4.43055C9.09416 4.56032 9.22463 4.69043 9.35501 4.82063C9.41683 4.88225 9.47877 4.94375 9.54084 5.00511C10.238 5.69478 10.7561 6.36093 10.7992 7.38144C10.7417 8.55965 9.84188 9.34903 9.05805 10.1289C8.98897 10.1982 8.98897 10.1982 8.9185 10.2689C8.87387 10.3135 8.82924 10.358 8.78325 10.4039C8.74335 10.4437 8.70345 10.4835 8.66234 10.5245C8.54447 10.6358 8.42197 10.7367 8.29394 10.8361C8.3232 11.0879 8.43787 11.2823 8.56013 11.4995C8.58218 11.5389 8.60423 11.5782 8.62694 11.6188C8.97621 12.2297 9.39451 12.8012 9.84722 13.3395C9.87853 13.377 9.87853 13.377 9.91046 13.4154C10.5193 14.1442 11.1612 14.8728 11.8837 15.4914C11.973 15.5679 12.0615 15.6454 12.1495 15.7234C12.8182 16.312 13.5323 16.8524 14.3066 17.2948C14.3355 17.3117 14.3643 17.3286 14.394 17.3459C14.4824 17.3975 14.5713 17.448 14.6605 17.4982C14.7128 17.5277 14.765 17.5572 14.8189 17.5876C14.9736 17.6518 15.0069 17.6525 15.1584 17.5952C15.2492 17.5252 15.2492 17.5252 15.3342 17.4343C15.3677 17.4003 15.4012 17.3664 15.4357 17.3314C15.4893 17.2759 15.4893 17.2759 15.544 17.2193C15.5815 17.1814 15.6189 17.1434 15.6575 17.1042C15.8176 16.9418 15.9768 16.7785 16.1361 16.6153C16.2526 16.4961 16.3696 16.3774 16.4866 16.2587C16.5394 16.2041 16.5394 16.2041 16.5931 16.1485C16.9232 15.8139 17.2883 15.5215 17.7295 15.3485C17.7779 15.329 17.8263 15.3095 17.8761 15.2894C18.5118 15.072 19.1855 15.1733 19.7807 15.458C20.0032 15.5899 20.1912 15.7438 20.3783 15.9209C20.4097 15.9505 20.4412 15.9801 20.4736 16.0106C20.9881 16.4984 21.4882 17.0015 21.9897 17.5027C22.1406 17.6535 22.2919 17.804 22.4433 17.9544C22.5615 18.072 22.6796 18.1898 22.7975 18.3077C22.8532 18.3633 22.909 18.4188 22.9648 18.4742C23.6591 19.1636 24.2677 19.8468 24.2934 20.8653C24.2751 21.9461 23.6235 22.6688 22.8943 23.4021C22.8498 23.4471 22.8053 23.492 22.7594 23.5383C22.6659 23.6325 22.5722 23.7265 22.4784 23.8204C22.3835 23.9155 22.289 24.011 22.1948 24.1069C21.1867 25.1322 21.1867 25.1322 20.62 25.4058C20.5683 25.4308 20.5166 25.4558 20.4633 25.4816C18.9751 26.1686 17.1541 25.7939 15.6595 25.3057C15.616 25.2915 15.5725 25.2773 15.5277 25.2627C12.5619 24.2765 9.77426 22.4656 7.49225 20.349C7.43647 20.2979 7.38069 20.2467 7.3249 20.1956C6.04834 19.021 6.04834 19.021 5.54282 18.376C5.42442 18.2294 5.29745 18.0924 5.16859 17.9551C4.86967 17.6339 4.60148 17.293 4.33558 16.9444C4.30715 16.9074 4.27872 16.8705 4.24943 16.8325C3.09286 15.3287 2.103 13.7213 1.32923 11.9877C1.30546 11.9357 1.28169 11.8838 1.2572 11.8302C0.417553 9.94474 -0.278736 7.67248 0.439851 5.64159C0.749251 4.88985 1.29415 4.35805 1.8619 3.79599C2.01555 3.64346 2.16661 3.49158 2.30629 3.32597C3.42184 2.0159 4.94403 0.975539 6.59034 2.12434ZM4.18526 3.62637C3.89066 3.90559 3.60329 4.19228 3.31524 4.47821C3.22309 4.56945 3.13067 4.66043 3.03799 4.75113C2.90295 4.88332 2.76876 5.01632 2.63472 5.14952C2.59369 5.18939 2.55266 5.22925 2.51038 5.27033C1.89568 5.88682 1.6663 6.62113 1.66761 7.47772C1.68009 8.29044 1.88379 9.06516 2.13092 9.83476C2.14575 9.88157 2.16057 9.92838 2.17584 9.9766C2.71701 11.6561 3.58132 13.246 4.58611 14.6913C4.6074 14.7221 4.62869 14.7528 4.65062 14.7845C5.13219 15.4768 5.64655 16.1489 6.18949 16.7942C6.22227 16.8333 6.22227 16.8333 6.2557 16.8732C6.94539 17.6948 7.6751 18.5184 8.49554 19.2127C8.62006 19.3194 8.7401 19.4306 8.86076 19.5416C9.13177 19.7877 9.40935 20.0223 9.6969 20.2488C9.73187 20.2766 9.76684 20.3043 9.80286 20.3329C12.3075 22.3106 15.8227 24.5826 19.1669 24.3043C19.8382 24.2068 20.4353 23.7989 20.8633 23.2854C21.0345 23.0878 21.2171 22.9042 21.4033 22.7209C21.4335 22.6911 21.4637 22.6613 21.4949 22.6306C21.6213 22.5061 21.7478 22.3818 21.8748 22.2579C21.9685 22.1664 22.0617 22.0745 22.1549 21.9824C22.1832 21.9551 22.2114 21.9277 22.2406 21.8996C22.5208 21.6214 22.756 21.3186 22.7902 20.9154C22.7716 20.1855 21.8689 19.5347 21.3839 19.0458C21.3546 19.0163 21.3253 18.9868 21.2952 18.9564C21.1408 18.8008 20.9862 18.6453 20.8315 18.49C20.7046 18.3626 20.5782 18.2348 20.4521 18.1068C20.298 17.9503 20.1433 17.7945 19.9882 17.6392C19.9298 17.5805 19.8716 17.5216 19.8136 17.4625C19.3111 16.925 19.3111 16.925 18.6408 16.6861C18.1451 16.7077 17.8333 17.0564 17.5093 17.3915C17.4214 17.4807 17.3335 17.57 17.2456 17.6592C17.1085 17.7992 16.9717 17.9394 16.835 18.0798C16.7021 18.2158 16.5687 18.3513 16.4352 18.4867C16.3749 18.5491 16.3749 18.5491 16.3135 18.6128C16.0213 18.9086 15.7068 19.1809 15.2976 19.2909C14.7835 19.2923 14.3963 19.088 13.9559 18.8469C13.8983 18.816 13.8983 18.816 13.8395 18.7844C12.7768 18.2093 11.8076 17.4714 10.9198 16.6537C10.8184 16.5613 10.7155 16.4716 10.6115 16.3821C10.3882 16.1873 10.1783 15.9808 9.96935 15.7709C9.93347 15.7352 9.89759 15.6996 9.86063 15.6629C9.62867 15.4306 9.40972 15.1905 9.19584 14.9417C9.14946 14.8892 9.10302 14.8368 9.05649 14.7844C6.6821 12.0846 6.6821 12.0846 6.66393 10.6259C6.73343 10.2597 6.93966 10.0069 7.20414 9.75653C7.24434 9.71708 7.24434 9.71708 7.28536 9.67683C7.43069 9.53559 7.58022 9.40061 7.73377 9.26837C7.97449 9.05946 8.20001 8.83634 8.42547 8.61123C8.46655 8.5708 8.50763 8.53036 8.54995 8.4887C9.08794 7.97162 9.08794 7.97162 9.29606 7.28131C9.22459 6.62705 8.44538 6.07196 8.00368 5.62927C7.9713 5.59678 7.93892 5.56428 7.90556 5.5308C7.73478 5.35941 7.56387 5.18816 7.39283 5.01703C7.21677 4.84083 7.04119 4.66417 6.8657 4.4874C6.72991 4.35078 6.59377 4.21449 6.45755 4.07829C6.39264 4.01328 6.32786 3.94815 6.2632 3.88288C6.17295 3.79184 6.08223 3.70129 5.99138 3.61084C5.96506 3.58407 5.93874 3.55731 5.91162 3.52973C5.30572 2.93104 4.74116 3.1089 4.18526 3.62637Z" fill="#4DA627" />
-                <path d="M15.3128 0.303232C15.3673 0.316931 15.4219 0.330629 15.4781 0.344743C17.5909 0.884589 19.5182 1.84637 21.172 3.276C21.2144 3.31188 21.2568 3.34777 21.3004 3.38474C21.9232 3.92718 22.5247 4.5215 23.026 5.17857C23.0651 5.22743 23.1042 5.27628 23.1446 5.32662C23.938 6.32192 24.5568 7.4361 25.0322 8.61432C25.0749 8.71996 25.1187 8.82505 25.1627 8.93012C25.4906 9.74785 25.9691 10.9447 25.8319 11.8376C25.7135 12.0787 25.5722 12.2199 25.3308 12.3382C25.0479 12.3834 24.8201 12.3504 24.5792 12.188C24.416 12.0113 24.3467 11.8721 24.2966 11.6379C24.2835 11.5794 24.2704 11.5208 24.2569 11.4605C24.2434 11.398 24.2299 11.3356 24.216 11.2712C23.82 9.5336 23.1392 7.88612 22.0429 6.46957C21.9726 6.37874 21.9034 6.2872 21.8342 6.19557C21.5536 5.82753 21.257 5.49834 20.9215 5.17857C20.8037 5.0619 20.6867 4.94481 20.5725 4.82458C19.0645 3.25505 16.8278 2.20043 14.7127 1.77299C14.6721 1.76468 14.6316 1.75636 14.5898 1.7478C14.5128 1.73238 14.4356 1.71779 14.3582 1.70421C14.093 1.65182 13.9492 1.56433 13.7564 1.37343C13.6232 1.14595 13.5814 0.97382 13.6274 0.718637C13.6899 0.509726 13.7956 0.365725 13.9715 0.239596C14.3746 0.0380803 14.8988 0.196273 15.3128 0.303232Z" fill="#4DA627" />
-                <path d="M18.0294 6.41241C18.3631 6.67825 18.6648 6.98004 18.9662 7.28116C18.9968 7.30943 19.0274 7.3377 19.0589 7.36682C20.1742 8.4125 21.1359 10.2708 21.1927 11.8092C21.1856 12.0561 21.1454 12.2037 20.9704 12.3881C20.7804 12.5369 20.6089 12.5757 20.3691 12.5883C20.1264 12.5388 19.9232 12.4334 19.7679 12.2379C19.6957 12.0763 19.6579 11.9091 19.6175 11.7372C19.2698 10.361 18.6961 9.25322 17.7135 8.23245C17.6825 8.19772 17.6515 8.163 17.6196 8.12723C16.7481 7.18252 15.4469 6.62022 14.2131 6.35251C13.9007 6.28454 13.6843 6.23374 13.497 5.96356C13.3965 5.76411 13.3895 5.59902 13.4044 5.37859C13.4992 5.11538 13.6312 4.98464 13.8554 4.82785C15.1279 4.46454 17.0667 5.67732 18.0294 6.41241Z" fill="#4DA627" />
-              </svg>
-            </div>
-            <div class="content">
-              <span>For More Inquery</span>
-              <h6><a href="tel:+990-737621432">+990-737 621 432</a></h6>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="others-image-wrap d-none">
       <a href="assets/image/card-img/travel-image-one-big.png" data-fancybox="images"></a>

@@ -11,6 +11,8 @@ public partial class Destination
 
     public string? Description { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual ICollection<Adventure> Adventures { get; set; } = new List<Adventure>();
 
     public virtual ICollection<AdventureCategory> Categories { get; set; } = new List<AdventureCategory>();

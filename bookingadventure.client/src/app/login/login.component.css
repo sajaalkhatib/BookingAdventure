@@ -1,32 +1,204 @@
-:root {
-  --primary-color: #4e73df; /* اللون الأساسي للأزرار */
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  /* نشيل الصورة */
-  /* ونضيف تدرج لوني بين الأخضر والرمادي */
-  background: linear-gradient(135deg, #28a745, #6c757d) !important;
+/* Main Wrapper Styles */
+.main-wrapper.authentication-wrapper {
+  background-image: url('https://wallpapers.com/images/hd/adventure-background-s0t6dibysfddsgfi.jpg'); /* مسار صورتك */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+  /* طبقة تظليل لتحسين قراءة النص (اختياري) */
+  .main-wrapper.authentication-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2); /* لون وتعتيم التظليل */
+    z-index: 0;
+  }
+
+/* تأكد من أن المحتوى يظهر فوق طبقة التظليل */
+.container-fluid,
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+/* Card Container */
+.authentication-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 2rem 2rem 1rem;
+}
+
+  .card-header h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-header p {
+    color: #718096;
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input-icon {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+  .input-icon-addon.toggle-password {
+    right: 0;
+    left: auto;
+    pointer-events: auto;
+    cursor: pointer;
+    color: #718096;
+  }
+
+    .input-icon-addon.toggle-password:hover {
+      color: #4a5568;
+    }
+
+.form-control {
+  padding-left: 40px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+  .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+.form-control-lg {
+  font-size: 0.9375rem;
+}
+
+.register-link {
+  color: #667eea !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+  .register-link:hover {
+    color: #5a67d8 !important;
+    text-decoration: underline;
+  }
+
+/* Button Styles */
+.btn-primary {
+  background-color: #4CAF50;
+  transition: background-color 0.3s;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+  .btn-primary:hover {
+    background-color: #317834;
+  }
+
+.btn-xl {
+  height: 48px;
+  font-size: 1rem;
+}
+
+/* Logo Container */
+.p-4.text-center {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 575.98px) {
+  .card-header, .card-body {
+    padding: 1.5rem;
+  }
+
+  .col-11 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Animation for better UX */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.9); /* الكارد شفاف شوي */
-  border: none;
-  border-radius: 1rem;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+/* Checkbox styling (for terms of service) */
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.15em;
+  border: 1px solid #e2e8f0;
 }
 
-  /* تصحيح للـ hover */
-  .btn-primary:hover {
-    background-color: #3e5dcf; /* لون أزرق أغمق */
-    border-color: #3e5dcf;
+  .form-check-input:checked {
+    background-color: #5a67d8;
+    border-color: #5a67d8;
   }
+
+.form-check-label {
+  color: #4a5568;
+  font-size: 0.875rem;
+}

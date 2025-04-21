@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="card border-0 shadow-sm rounded-4 p-4">
+    <h4 class="mb-4 fw-bold text-primary">➕ Add New Adventure</h4>
+
+    <form #adventureForm="ngForm" (ngSubmit)="onSubmit(adventureForm.value)">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <label class="form-label">Adventure Title</label>
+          <input type="text" class="form-control" name="Title" ngModel placeholder="Enter adventure title" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Level</label>
+          <select class="form-select" name="Level" ngModel required>
+            <option value="" disabled selected>Select level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" name="Description" rows="3" placeholder="Adventure details..." required></textarea>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Duration (in hours)</label>
+          <input type="number" class="form-control" name="Duration" ngModel min="1" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Price (JD)</label>
+          <input type="number" class="form-control" name="Price" ngModel step="0.01" min="0" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control" name="Location" ngModel required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Max Participants</label>
+          <input type="number" class="form-control" name="MaxParticipants" ngModel min="1" required>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Instructor</label>
+          <select class="form-select" name="InstructorId" ngModel required>
+            <option value="" disabled selected>Select instructor</option>
+            <option *ngFor="let instructor of instructors" [value]="instructor.instructorId">{{ instructor.fullName }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Adventure Type</label>
+          <select class="form-select" name="TypeId" ngModel required>
+            <option value="" disabled selected>Select type</option>
+            <option *ngFor="let type of types" [value]="type.typeId">{{ type.typeName }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Destination</label>
+          <select class="form-select" name="DestinationId" ngModel required>
+            <option value="" disabled selected>Select destination</option>
+            <option *ngFor="let destination of destinations" [value]="destination.destinationId">{{ destination.name }}</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Adventure Image URLs</label>
+          <textarea class="form-control" name="ImageUrls" ngModel rows="3" placeholder="Enter image URLs separated by comma or newline" required></textarea>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="submit" class="btn btn-primary px-4">Submit</button>
+        <button type="reset" class="btn btn-light text-danger border">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

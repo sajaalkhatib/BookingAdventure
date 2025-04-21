@@ -1,5 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingService } from './booking.service';
+import { Component } from '@angular/core';
+import { AdventureService } from '../../Service-Rudaina/adventureservice';
+import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+export interface AdventureDetailsDto {
+  adventureId: number;
+  title: string;
+  typeName: string;
+  description: string;
+  duration: number;
+  price: number;
+  maxParticipants: number;
+  adventureTypeName: string;
+  instructorName: string;
+  images: string[];
+  overview: string;  // إضافة حقل Overview
+  highlightsJson?: string;  // إضافة حقل HighlightsJson (اختياري)
+  faqsJson?: string;  // إضافة حقل FaqsJson (اختياري)
+}
+
 
 @Component({
   selector: 'app-booking',
@@ -7,11 +26,12 @@ import { BookingService } from './booking.service';
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })
-export class BookingComponent implements OnInit {
-
+export class BookingComponent {
+  adventureId: number = 0;
+  Adventure?: AdventureDetailsDto;
   bookingData = {
     userId: 1,
-    adventureId: 2,
+    adventureId: 0,
     scheduledDate: '',
     numberOfAdults: 1,
     numberOfChildren: 0,
@@ -25,28 +45,37 @@ export class BookingComponent implements OnInit {
     paymentType: 'Online',
     totalPrice: 0
   };
-
   userBookings: any[] = [];
   extraServiceList = [
     { key: 'pickup', label: 'Pickup From Home', price: 30 },
     { key: 'upgrade', label: 'Accommodation Upgrades', price: 50 },
     { key: 'exclusiveAccess', label: 'Exclusive Access', price: 40 }
   ];
+  constructor(
+    private _AdventureServices: AdventureService,
+    private route: ActivatedRoute
+  ) { }
 
-  constructor(private bookingService: BookingService) { }
+  ngOnInit() {
+    const idParam = this.route.snapshot.paramMap.get('adventureId');
+    this.adventureId = idParam ? +idParam : 0;
 
-  ngOnInit(): void {
+    if (this.adventureId) {
+      this.getAdventuresByID(this.adventureId);
+    }
+    this.bookingData.adventureId = this.adventureId;
+    this.newReview.adventureId = this.adventureId;
+
     this.getBookings();
     this.calculateTotalPrice();
     this.loadReviews();
     this.getReviews();
 
   }
-
   submitBooking() {
     this.bookingData['numberOfParticipants'] = this.bookingData.numberOfAdults + this.bookingData.numberOfChildren;
 
-    this.bookingService.createBooking(this.bookingData).subscribe({
+    this._AdventureServices.createBooking(this.bookingData).subscribe({
       next: (res: any) => {
         alert(' Booking successful!');
         console.log(res);
@@ -57,12 +86,33 @@ export class BookingComponent implements OnInit {
         console.error(err);
       }
     });
-}
+  }
 
-
-
+  getAdventuresByID(id: number) {
+    this._AdventureServices.getAdventuresByID(id).subscribe({
+      next: (data) => {
+        this.Adventure = data;
+        console.log("Adventure Loaded:", data);
+      },
+      error: (err) => {
+        console.error("Error loading adventure", err);
+      }
+    });
+  }
+  get highlightsJsonParsed() {
+    // إذا كان highlightsJson موجودًا وقادرًا على التحليل
+    if (this.Adventure?.highlightsJson) {
+      try {
+        return JSON.parse(this.Adventure.highlightsJson); // قم بتحليل النص إلى مصفوفة
+      } catch (error) {
+        console.error("Error parsing highlightsJson:", error);
+        return [];  // في حالة حدوث خطأ، أعد مصفوفة فارغة
+      }
+    }
+    return []; // إذا لم يكن هناك highlightsJson
+  }
   getBookings() {
-    this.bookingService.getBookingsByUser(this.bookingData.userId).subscribe({
+    this._AdventureServices.getBookingsByUser(this.bookingData.userId).subscribe({
       next: (res: any[]) => {
         this.userBookings = res;
         console.log(' User Reservations:', res);
@@ -74,9 +124,17 @@ export class BookingComponent implements OnInit {
 
 
   }
+  calculateTotalPrice() {
+    let total = 0;
+    total += this.bookingData.numberOfAdults * 120;
+    total += this.bookingData.numberOfChildren * 0;
 
+    if (this.bookingData.extraServices.pickup) total += 30;
+    if (this.bookingData.extraServices.upgrade) total += 50;
+    if (this.bookingData.extraServices.exclusiveAccess) total += 40;
 
-
+    this.bookingData.totalPrice = total;
+  }
   increaseAdults() {
     this.bookingData.numberOfAdults++;
     this.calculateTotalPrice();
@@ -100,44 +158,18 @@ export class BookingComponent implements OnInit {
       this.calculateTotalPrice();
     }
   }
-
-
-
-
-
-
-
-  calculateTotalPrice() {
-    let total = 0;
-    total += this.bookingData.numberOfAdults * 120;
-    total += this.bookingData.numberOfChildren * 0;
-
-    if (this.bookingData.extraServices.pickup) total += 30;
-    if (this.bookingData.extraServices.upgrade) total += 50;
-    if (this.bookingData.extraServices.exclusiveAccess) total += 40;
-
-    this.bookingData.totalPrice = total;
-  }
-
-  private combineDateAndTime(dateStr: string, timeSlot: string): string {
-    // input: '2025-05-01', '09:00' ➝ output: '2025-05-01T09:00:00'
-    return `${dateStr}T${timeSlot}:00`;
-  }
-
-  //-------------------------------------------------------------------------------------------
-
   reviews: any[] = [];
-
   newReview = {
     name: '',
     comment: '',
     rating: 5,
-    adventureId: 2, // نفس الـ ID تبع المغامرة الحالية
+    adventureId: 0, // 🔥 خذها من الـ bookingData
     reviewDate: new Date()
   };
 
   submitReview() {
-    this.bookingService.createReview(this.newReview).subscribe({
+    
+    this._AdventureServices.createReview(this.newReview).subscribe({
       next: () => {
         alert(' Review submitted!');
         this.loadReviews(); // تحديث القائمة
@@ -150,7 +182,7 @@ export class BookingComponent implements OnInit {
   }
 
   loadReviews() {
-    this.bookingService.getReviewsByAdventure(this.newReview.adventureId).subscribe({
+    this._AdventureServices.getReviewsByAdventure(this.newReview.adventureId).subscribe({
       next: (data) => this.reviews = data,
       error: (err) => console.error(' Error loading reviews:', err)
     });
@@ -160,7 +192,7 @@ export class BookingComponent implements OnInit {
   //-----------------------------------------------------------------------------------------
 
   getReviews() {
-    this.bookingService.getReviewsByAdventure(this.bookingData.adventureId).subscribe({
+    this._AdventureServices.getReviewsByAdventure(this.bookingData.adventureId).subscribe({
       next: (res: any[]) => {
         this.reviews = res;
         this.totalReviews = res.length;
@@ -186,19 +218,9 @@ export class BookingComponent implements OnInit {
 
 
 
-  //------------------------------------------------------------------------------------------------
 
   averageRating: number = 0;
   totalReviews: number = 0;
-  ratingLabel: string = 'Excellent'; 
-
-
-
-
-
-
-
-
-
+  ratingLabel: string = 'Excellent';
 
 }

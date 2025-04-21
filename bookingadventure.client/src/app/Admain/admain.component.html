@@ -1,0 +1,25 @@
+<div class="d-flex" style="min-height: 100vh;">
+  <!-- Sidebar -->
+  <nav class="bg-dark text-white p-3" style="width: 250px;">
+    <h2 class="h4 mb-4">Admin Dashboard</h2>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Overview</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" routerLink="/Admin/getAdventure" routerLinkActive="active">Services</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" routerLink="users" routerLinkActive="active">Users</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" routerLink="contact" routerLinkActive="active">Contact Us</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 p-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
