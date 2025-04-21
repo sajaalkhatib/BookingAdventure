@@ -21,9 +21,13 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<AdventureImage> AdventureImages { get; set; }
 
+    public virtual DbSet<AdventureType> AdventureTypes { get; set; }
+
     public virtual DbSet<Booking> Bookings { get; set; }
 
     public virtual DbSet<ContactMessage> ContactMessages { get; set; }
+
+    public virtual DbSet<Destination> Destinations { get; set; }
 
     public virtual DbSet<Instructor> Instructors { get; set; }
 
@@ -48,9 +52,17 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.Title).HasMaxLength(100);
 
+            entity.HasOne(d => d.AdventureType).WithMany(p => p.Adventures)
+                .HasForeignKey(d => d.AdventureTypeId)
+                .HasConstraintName("FK__Adventure__Adven__5441852A");
+
             entity.HasOne(d => d.Category).WithMany(p => p.Adventures)
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK__Adventure__Categ__403A8C7D");
+
+            entity.HasOne(d => d.Destination).WithMany(p => p.Adventures)
+                .HasForeignKey(d => d.DestinationId)
+                .HasConstraintName("FK__Adventure__Desti__5165187F");
 
             entity.HasOne(d => d.Instructor).WithMany(p => p.Adventures)
                 .HasForeignKey(d => d.InstructorId)
@@ -62,6 +74,7 @@ public partial class MyDbContext : DbContext
             entity.HasKey(e => e.CategoryId).HasName("PK__Adventur__19093A0B0B0E52EE");
 
             entity.Property(e => e.CategoryName).HasMaxLength(100);
+            entity.Property(e => e.Description).HasMaxLength(255);
         });
 
         modelBuilder.Entity<AdventureImage>(entity =>
@@ -73,6 +86,13 @@ public partial class MyDbContext : DbContext
             entity.HasOne(d => d.Adventure).WithMany(p => p.AdventureImages)
                 .HasForeignKey(d => d.AdventureId)
                 .HasConstraintName("FK__Adventure__Adven__4316F928");
+        });
+
+        modelBuilder.Entity<AdventureType>(entity =>
+        {
+            entity.HasKey(e => e.TypeId).HasName("PK__Adventur__516F03B5B2238051");
+
+            entity.Property(e => e.TypeName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Booking>(entity =>
@@ -105,6 +125,32 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.Message).HasMaxLength(1000);
+        });
+
+        modelBuilder.Entity<Destination>(entity =>
+        {
+            entity.HasKey(e => e.DestinationId).HasName("PK__Destinat__DB5FE4CCA85CDAC3");
+
+            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.ImageUrl).HasMaxLength(500);
+            entity.Property(e => e.Name).HasMaxLength(100);
+
+            entity.HasMany(d => d.Categories).WithMany(p => p.Destinations)
+                .UsingEntity<Dictionary<string, object>>(
+                    "DestinationCategory",
+                    r => r.HasOne<AdventureCategory>().WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK__Destinati__Categ__5812160E"),
+                    l => l.HasOne<Destination>().WithMany()
+                        .HasForeignKey("DestinationId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("FK__Destinati__Desti__571DF1D5"),
+                    j =>
+                    {
+                        j.HasKey("DestinationId", "CategoryId").HasName("PK__Destinat__7ACF776CBA37112A");
+                        j.ToTable("DestinationCategories");
+                    });
         });
 
         modelBuilder.Entity<Instructor>(entity =>

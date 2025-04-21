@@ -8,6 +8,10 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\bookingadventure.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\Admain\Adventure\" />
+    <Folder Include="src\app\ServiseApi\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\serviceFarah\" />
     <Folder Include="src\assets\images\" />
   </ItemGroup>

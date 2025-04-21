@@ -8,34 +8,23 @@ using Microsoft.Extensions.FileProviders;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
 
-//builder.Services.AddCors(options => options.AddPolicy("develop", option =>
-//{
-//    option.AllowAnyOrigin();
-//    option.AllowAnyHeader();
-//    option.AllowAnyMethod();
-//}));
-//builder.Services.AddScoped<IAdmin>();
-//builder.Services.AddScoped<Iuser>();
-//builder.Services.AddScoped<User>();
-//builder.Services.AddScoped<Admin>();
-
-builder.Services.AddCors(options => options.AddPolicy("develop", option =>
+builder.Services.AddCors(options =>
 {
-    option.AllowAnyOrigin();
-    option.AllowAnyHeader();
-    option.AllowAnyMethod();
-}));
-
-
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 var app = builder.Build();
 
 app.UseDefaultFiles();

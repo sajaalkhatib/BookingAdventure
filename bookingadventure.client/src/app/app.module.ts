@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 //import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +19,13 @@ import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { RegesterComponent } from './regester/regester.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
+import { OverviewComponent } from './Admain/overview/overview.component';
+import { AdmainComponent } from './Admain/admain.component';
+import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
+;
 
 
 @NgModule({
@@ -35,10 +43,17 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginComponent,
     RegesterComponent,
     ProfileComponent,
+    OverviewComponent,
+    AdmainComponent,
+    GetAdventureComponent,
     ForgotPasswordComponent,
 
   ],
   imports: [
+    BrowserModule, HttpClientModule,
+    AppRoutingModule,
+    CommonModule,
+    FormsModule
     BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule
   ],

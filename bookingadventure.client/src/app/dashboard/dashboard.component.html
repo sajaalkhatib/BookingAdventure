@@ -1,0 +1,44 @@
+<!--<div class="container mt-4">
+  <h2 class="mb-4 text-primary">📊 Dashboard - Bookings</h2>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Booking ID</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>Adventure Title</th>
+        <th>Booking Date</th>
+        <th>Scheduled Date</th>
+        <th>Participants</th>
+        <th>Status</th>
+        <th>Payment Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of allBooking">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.userName }}</td>
+        <td>{{ booking.userEmail }}</td>
+        <td>{{ booking.adventureTitle }}</td>
+        <td>{{ booking.bookingDate | date:'short' }}</td>
+        <td>{{ booking.scheduledDate | date:'short' }}</td>
+        <td>{{ booking.numberOfParticipants }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': booking.status === 'Confirmed',
+            'badge bg-warning text-dark': booking.status === 'Pending',
+            'badge bg-danger': booking.status === 'Cancelled'
+          }">
+            {{ booking.status }}
+          </span>
+        </td>
+        <td>{{ booking.paymentType }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="allBooking.length === 0" class="alert alert-info text-center">
+    No bookings found.
+  </div>
+</div>-->

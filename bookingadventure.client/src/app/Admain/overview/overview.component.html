@@ -1,0 +1,66 @@
+<div class="container my-4">
+  <div class="row text-center">
+    <div class="col-md-4 mb-3">
+      <div class="card bg-primary text-white shadow-sm">
+        <div class="card-body">
+          <i class="fas fa-user-friends fa-3x"></i>
+          <h5 class="card-title mt-3">Total Users</h5>
+          <p class="card-text fs-4 fw-bold">{{ animatedUsers }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card bg-success text-white shadow-sm">
+        <div class="card-body">
+          <i class="fas fa-book fa-3x"></i>
+          <h5 class="card-title mt-3">Total Bookings</h5>
+          <p class="card-text fs-4 fw-bold">{{ animatedBookings }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card bg-warning text-dark shadow-sm">
+        <div class="card-body">
+          <i class="fas fa-chalkboard-teacher fa-3x"></i>
+          <h5 class="card-title mt-3">Total Instructors</h5>
+          <p class="card-text fs-4 fw-bold">{{ animatedInstructors }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-primary fw-bold text-center">📊 Bookings Dashboard</h2>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Booking ID</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>Booking Date</th>
+        <th>Scheduled Date</th>
+        <th>Participants</th>
+        <th>Payment Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of allBooking">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.fullName }}</td>
+        <td>{{ booking.email }}</td>
+        <td>{{ booking.bookingDate ? (booking.bookingDate | date:'short') : '-' }}</td>
+        <td>{{ booking.scheduledDate ? (booking.scheduledDate | date:'short') : '-' }}</td>
+        <td>{{ booking.numberOfParticipants !== null ? booking.numberOfParticipants : '-' }}</td>
+        <td>{{ booking.paymentType || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="allBooking.length === 0" class="alert alert-info text-center">
+    No bookings found.
+  </div>
+</div>

@@ -11,6 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { RegesterComponent } from './regester/regester.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ServiceComponent } from './service/service.component';
+//import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdmainComponent } from './Admain/admain.component';
+import { OverviewComponent } from './Admain/overview/overview.component';
+import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
@@ -26,9 +30,18 @@ const routes: Routes = [
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "service", component: ServiceComponent },
+  //{ path: "dashbord", component: DashboardComponent },
+  {
+    path: "Admin", component: AdmainComponent, children: [
+      { path: "", component: OverviewComponent },
+      { path: "getAdventure", component: GetAdventureComponent }
+      
+
+  { path: "service", component: ServiceComponent },
   { path: "forgetPass", component: ForgotPasswordComponent }
 
-  ];
+    ]
+  }]
 
 @NgModule({
 
