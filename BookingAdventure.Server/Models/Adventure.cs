@@ -27,11 +27,19 @@ public partial class Adventure
 
     public bool? IsAvailable { get; set; }
 
+    public int? DestinationId { get; set; }
+
+    public int? AdventureTypeId { get; set; }
+
     public virtual ICollection<AdventureImage> AdventureImages { get; set; } = new List<AdventureImage>();
+
+    public virtual AdventureType? AdventureType { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
     public virtual AdventureCategory? Category { get; set; }
+
+    public virtual Destination? Destination { get; set; }
 
     public virtual Instructor? Instructor { get; set; }
 
