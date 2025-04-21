@@ -16,10 +16,10 @@ namespace BookingAdventure.Server.Controllers
     [ApiController]
     public class RegisterLoginController : ControllerBase
     {
-        private readonly MyDbContext _db;
+        private readonly MyAppDbContext _db;
 
         private static Dictionary<string, string> ResetCodeStore = new();
-        public RegisterLoginController(MyDbContext db)
+        public RegisterLoginController(MyAppDbContext db)
         {
             _db = db;
         }
@@ -131,7 +131,7 @@ namespace BookingAdventure.Server.Controllers
 
         [HttpPut("update-profile/{id}")]
         public async Task<IActionResult> UpdateProfile(int id, [FromForm] editProfile dto)
-        {
+        { 
             var user = await _db.Users.FindAsync(id);
             if (user == null)
                 return NotFound("User not found.");
@@ -193,7 +193,7 @@ namespace BookingAdventure.Server.Controllers
                 return BadRequest(ModelState);
 
             //var user = await _db.Users.FirstOrDefaultAsync(u => u.UserId == dto.UserId);
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.UserId == 1);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.UserId == dto.UserId);
             if (user == null)
                 return NotFound();
 

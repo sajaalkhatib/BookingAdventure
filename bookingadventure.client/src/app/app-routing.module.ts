@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "service", component: ServiceComponent },
+  { path: "forgetPass", component: ForgotPasswordComponent },
   //{ path: "dashbord", component: DashboardComponent },
   { path: "forgetPass", component: ForgotPasswordComponent },
   { path: "", component: HomeComponent },
@@ -43,12 +44,11 @@ const routes: Routes = [
     path: "Admin", component: AdmainComponent, children: [
       { path: "", component: OverviewComponent },
       { path: "getAdventure", component: GetAdventureComponent },
-      { path: "editeAdventure/:id", component: EditeAdventureComponent },
-      //{ path: "addAdventure", component: AddadventureComponent }
       
 
+  { path: "service", component: ServiceComponent },
   
-
+  { path: "service/:destinationId", component: ServiceComponent },
   { path: "AddAdventure", component: AddAdventureComponent }
 
 
@@ -58,7 +58,7 @@ const routes: Routes = [
 @NgModule({
 
 
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

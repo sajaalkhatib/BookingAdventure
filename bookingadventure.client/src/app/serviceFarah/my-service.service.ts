@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class MyServiceService {
   private apiUrl = "https://localhost:7280/api/RegisterLogin";
+
+
   constructor(private _http: HttpClient) { }
 
   registration(data: any) {

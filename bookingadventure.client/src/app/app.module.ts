@@ -64,11 +64,11 @@ import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.compo
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule,
-     HttpClientModule, FormsModule, ReactiveFormsModule,
+    FormsModule
+    , HttpClientModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule
-   
     ,
+    FormsModule,
     ReactiveFormsModule 
 
   ],

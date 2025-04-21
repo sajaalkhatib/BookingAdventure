@@ -1,4 +1,110 @@
-<!-- breadcrumb-section start -->
+<!--<form (ngSubmit)="submitBooking()" #bookingForm="ngForm">-->
+  <!-- 📅 تاريخ المغامرة -->
+  <!--<div class="mb-3">
+    <label for="scheduledDate" class="form-label">📅 موعد المغامرة</label>
+    <input type="date"
+           id="scheduledDate"
+           class="form-control"
+           [(ngModel)]="bookingData.scheduledDate"
+           name="scheduledDate"
+           required />
+  </div>-->
+
+  <!-- 🕐 الوقت -->
+  <!--<div class="mb-3">
+    <label class="form-label">🕐 الوقت</label>
+    <select class="form-select"
+            [(ngModel)]="bookingData.selectedTimeSlot"
+            name="selectedTimeSlot"
+            required>
+      <option value="">اختر وقتاً</option>
+      <option value="09:00">9:00 AM</option>
+      <option value="12:00">12:00 PM</option>
+      <option value="15:00">3:00 PM</option>
+    </select>
+  </div>-->
+
+  <!-- 👤 الكبار -->
+  <!--<div class="mb-3 d-flex align-items-center justify-content-between">
+    <label class="form-label">👨‍🦱 الكبار (120 دينار)</label>
+    <div>
+      <button type="button" class="btn btn-outline-secondary me-2"
+              (click)="decreaseAdults()">
+        −
+      </button>
+      <span>{{ bookingData.numberOfAdults }}</span>
+      <button type="button" class="btn btn-outline-secondary ms-2"
+              (click)="increaseAdults()">
+        +
+      </button>
+    </div>
+  </div>-->
+
+  <!-- 👶 الأطفال -->
+  <!--<div class="mb-3 d-flex align-items-center justify-content-between">
+    <label class="form-label">🧒 الأطفال (مجاني)</label>
+    <div>
+      <button type="button" class="btn btn-outline-secondary me-2"
+              (click)="decreaseChildren()">
+        −
+      </button>
+      <span>{{ bookingData.numberOfChildren }}</span>
+      <button type="button" class="btn btn-outline-secondary ms-2"
+              (click)="increaseChildren()">
+        +
+      </button>
+    </div>
+  </div>-->
+
+  <!-- 💼 الخدمات الإضافية -->
+  <!--<div class="mb-3">
+    <label class="form-label fw-bold">🧳 خدمات إضافية</label>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input"
+             [(ngModel)]="bookingData.extraServices.pickup"
+             name="pickup" (change)="calculateTotalPrice()">
+      <label class="form-check-label">🚗 Pickup From Home - 30 د</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input"
+             [(ngModel)]="bookingData.extraServices.upgrade"
+             name="upgrade" (change)="calculateTotalPrice()">
+      <label class="form-check-label">🏨 Accommodation Upgrade - 50 د</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input"
+             [(ngModel)]="bookingData.extraServices.exclusiveAccess"
+             name="exclusiveAccess" (change)="calculateTotalPrice()">
+      <label class="form-check-label">🔒 Exclusive Access - 40 د</label>
+    </div>
+  </div>-->
+
+  <!-- 💳 طريقة الدفع -->
+  <!--<div class="mb-3">
+    <label class="form-label">💳 طريقة الدفع</label>
+    <select class="form-select"
+            [(ngModel)]="bookingData.paymentType"
+            name="paymentType"
+            required>
+      <option value="Online">أونلاين</option>
+      <option value="Cash">نقداً عند الوصول</option>
+    </select>
+  </div>-->
+
+  <!-- 💰 السعر الكلي -->
+  <!--<div class="text-end mb-4">
+    <h5>💰 السعر الكلي: <span class="text-success">{{ bookingData.totalPrice }} د.أ</span></h5>
+  </div>-->
+
+  <!-- ✅ زر الإرسال -->
+  <!--<button class="btn btn-success w-100" type="submit" [disabled]="!bookingForm.valid">
+    تأكيد الحجز ✅
+  </button>
+</form>-->
+
+
+
+ breadcrumb-section start
 <div class="breadcrumb-section three mb-120">
   <div class="container">
     <div class="row">
@@ -27,8 +133,8 @@
     </div>
   </div>
 </div>
-<!-- breadcrumb-section end -->
-<!-- package details section start -->
+ breadcrumb-section end
+ package details section start
 <div class="package-details-section mb-120">
   <div class="container">
     <div class="row gy-md-5">
