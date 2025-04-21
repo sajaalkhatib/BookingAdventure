@@ -33,13 +33,13 @@ public partial class MyDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-5AU1IL4;Database=coreApiProject;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-F194SCB;Database=coreApiProject;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Adventure>(entity =>
         {
-            entity.HasKey(e => e.AdventureId).HasName("PK__Adventur__D721A00E46781804");
+            entity.HasKey(e => e.AdventureId).HasName("PK__Adventur__D721A00ED238D39C");
 
             entity.Property(e => e.Description).HasMaxLength(1000);
             entity.Property(e => e.IsAvailable).HasDefaultValue(true);
@@ -59,14 +59,14 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<AdventureCategory>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Adventur__19093A0BF352F985");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Adventur__19093A0B0B0E52EE");
 
             entity.Property(e => e.CategoryName).HasMaxLength(100);
         });
 
         modelBuilder.Entity<AdventureImage>(entity =>
         {
-            entity.HasKey(e => e.ImageId).HasName("PK__Adventur__7516F70C4CA73438");
+            entity.HasKey(e => e.ImageId).HasName("PK__Adventur__7516F70C218770D9");
 
             entity.Property(e => e.ImageUrl).HasMaxLength(255);
 
@@ -77,7 +77,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951AEDB4135234");
+            entity.HasKey(e => e.BookingId).HasName("PK__Bookings__73951AED40877BF0");
 
             entity.Property(e => e.BookingDate)
                 .HasDefaultValueSql("(getdate())")
@@ -97,7 +97,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<ContactMessage>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__ContactM__C87C0C9CF62E1625");
+            entity.HasKey(e => e.MessageId).HasName("PK__ContactM__C87C0C9CD7255F6F");
 
             entity.Property(e => e.DateSent)
                 .HasDefaultValueSql("(getdate())")
@@ -109,7 +109,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Instructor>(entity =>
         {
-            entity.HasKey(e => e.InstructorId).HasName("PK__Instruct__9D010A9B2F5FF67E");
+            entity.HasKey(e => e.InstructorId).HasName("PK__Instruct__9D010A9BFD614409");
 
             entity.Property(e => e.Bio).HasMaxLength(500);
             entity.Property(e => e.Email).HasMaxLength(100);
@@ -119,7 +119,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79CE56E73933");
+            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79CE77FEFE75");
 
             entity.Property(e => e.Comment).HasMaxLength(1000);
             entity.Property(e => e.ReviewDate)
@@ -133,9 +133,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C592B3DA6");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CE3B44DAA");
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534ADBE9970").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534C5BA4360").IsUnique();
 
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
