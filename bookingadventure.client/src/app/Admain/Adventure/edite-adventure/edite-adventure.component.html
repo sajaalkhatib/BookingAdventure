@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h2>Edit Adventure</h2>
+
+  <form (ngSubmit)="updateAdventure()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="adventure.title" name="title" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" [(ngModel)]="adventure.description" name="description" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="duration" class="form-label">Duration</label>
+      <input type="number" id="duration" class="form-control" [(ngModel)]="adventure.duration" name="duration" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="level" class="form-label">Level</label>
+      <input type="text" id="level" class="form-control" [(ngModel)]="adventure.level" name="level" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="adventure.price" name="price" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" id="location" class="form-control" [(ngModel)]="adventure.location" name="location" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="maxParticipants" class="form-label">Max Participants</label>
+      <input type="number" id="maxParticipants" class="form-control" [(ngModel)]="adventure.maxParticipants" name="maxParticipants" required>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="isAvailable" class="form-check-input" [(ngModel)]="adventure.isAvailable" name="isAvailable">
+      <label for="isAvailable" class="form-check-label">Available</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">Cancel</button>
+  </form>
+</div>

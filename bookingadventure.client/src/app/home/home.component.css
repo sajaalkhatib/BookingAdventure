@@ -1,0 +1,153 @@
+.tour-card {
+  position: relative;
+  overflow: hidden;
+}
+.adventure-details {
+  display: flex;
+  justify-content: space-between; /* توزيع العناصر بالتساوي */
+  margin: 10px 0; /* إضافة مسافة بين العناصر */
+  padding: 10px;
+  background-color: #fff3e0; /* خلفية خفيفة */
+  border-radius: 5px; /* زوايا مدورة */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* تأثير ظل */
+}
+
+  .adventure-details span {
+    font-weight: bold;
+    color: #6f4c3e; /* لون داكن */
+  }
+
+.section-title .sub-title-tag span {
+  font-size: 1.5rem; /* حجم أكبر للعنوان الفرعي */
+  font-weight: bold; /* زيادة الوزن */
+  text-align: center; /* محاذاة للنص في الوسط */
+  display: block; /* جعل العنصر كتلة */
+  margin-bottom: 10px; /* مسافة أسفل العنوان */
+}
+
+.section-title .description p {
+  font-size: 1.2rem; /* حجم أكبر للوصف */
+  text-align: center; /* محاذاة للنص في الوسط */
+  max-width: 600px; /* تحديد العرض الأقصى لجعل النص يبدو مرتبًا */
+  margin: 0 auto; /* توسيط العنصر */
+}
+
+.adventure-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8B4513; /* لون بني */
+  margin-bottom: 10px; /* مسافة بين السعر والز button */
+}
+
+.book-now-container {
+  display: flex;
+  justify-content: space-between; /* توزيع العناصر بالتساوي */
+  align-items: center; /* محاذاة عمودية */
+}
+
+.btn-outline-primary {
+  border-color: #8B4513; /* لون بني */
+  color: #8B4513; /* لون النص */
+}
+
+  .btn-outline-primary:hover {
+    background-color: #8B4513; /* خلفية عند التمرير */
+    color: #fff; /* لون النص عند التمرير */
+  }
+
+.tour-content-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tour-card:hover .tour-content-hidden {
+  opacity: 1;
+}
+
+.tour-content {
+  display: none;
+}
+
+.tour-card:hover .tour-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.categories-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  position: relative;
+}
+
+.feather-line {
+  width: 50%;
+  height: 4px;
+  background-size: contain;
+  margin: 10px auto; /* مركز الخط */
+}
+
+.adventure-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+  .adventure-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }
+
+.adventure-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.adventure-content {
+  padding: 20px;
+}
+
+.adventure-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.adventure-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.adventure-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.adventure-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4DA627;
+}

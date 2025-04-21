@@ -15,9 +15,9 @@ namespace BookingAdventure.Server.DTO
         public string? ImageUrl { get; set; }
 
 
-        public string? InstructorName { get; set; }
-        public string? CategoryName { get; set; }
-        public string? DestinationName { get; set; }
+        public int InstructorId { get; set; }
+        public int CategoryId { get; set; }
+        public int DestinationId { get; set; }
 
 
     }

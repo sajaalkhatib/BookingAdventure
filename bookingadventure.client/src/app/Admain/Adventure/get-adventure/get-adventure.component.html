@@ -1,4 +1,8 @@
 <div class="container">
+
+  <!--<div class="mb-3">
+    <a routerLink="/Admin/addAdventure" class="btn btn-success">Add Adventure</a>
+  </div>-->
   <h2>Adventures List</h2>
 
   <table class="table table-striped table-bordered">
@@ -35,7 +39,7 @@
         <td>{{ adventure.categoryName }}</td>
         <td>{{ adventure.destinationName }}</td>
         <td>
-          <button class="btn btn-primary btn-sm" (click)="editAdventure(adventure.adventureId)">Edit</button>
+          <a routerLink='/Admin/editeAdventure/{{adventure.adventureId}}' class="btn btn-primary btn-sm">Edit</a>
           <button class="btn btn-danger btn-sm" (click)="deleteAdventure(adventure.adventureId)">Delete</button>
         </td>
       </tr>
