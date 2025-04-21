@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegesterComponent } from './regester/regester.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ServiceComponent } from './service/service.component';
+import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.component';
 
 
 const routes: Routes = [
@@ -20,11 +21,13 @@ const routes: Routes = [
 
   { path: "Destination", component: DestinationComponent },
   { path: "destinationdetails", component: DestinationdetailsComponent },
-  { path: "booking", component: BookingComponent },
+  { path: 'booking/:adventureId', component: BookingComponent },
   { path: "login", component: LoginComponent },
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
-  { path: "service", component: ServiceComponent }
+  { path: "service/:destinationId", component: ServiceComponent },
+  { path: "AddAdventure", component: AddAdventureComponent }
+
 
   ];
 

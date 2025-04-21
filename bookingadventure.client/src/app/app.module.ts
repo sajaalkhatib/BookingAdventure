@@ -16,6 +16,14 @@ import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { RegesterComponent } from './regester/regester.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ServiceComponent } from './service/service.component';
+import { FormsModule } from '@angular/forms';
+
+import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.component';
+import {  ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 
 @NgModule({
@@ -33,11 +41,16 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegesterComponent,
     ProfileComponent,
+    ServiceComponent,
+    AddAdventureComponent
 
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule 
+
   ],
   providers: [],
   bootstrap: [AppComponent]

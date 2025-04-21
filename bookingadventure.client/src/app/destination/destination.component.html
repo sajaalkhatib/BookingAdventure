@@ -31,195 +31,25 @@
 <div class="destinatio-section mb-120">
   <div class="container">
     <div class="row g-4 gy-4 mb-50">
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+      <div *ngFor="let destination of destinations; let i = index" class="col-lg-3 wow animate fadeInUp" [attr.data-wow-delay]="(i * 200) + 'ms'" data-wow-duration="1500ms">
         <div class="destination-card">
           <div class="destination-card-two">
-            <a  routerLink="/destinationdetails" class="card-img">
-              <img src="assets/image/card-img/amsterdam.png" alt="" />
-            </a>
+              <a [routerLink]="['/service', destination.destinationId]" class="card-img">
+                <img [src]="destination.imageUrl" alt="" />
+              </a>
+
             <div class="card-content-wrap">
               <div class="card-content">
-                <h4>Amsterdam</h4>
+                <h4>{{ destination.name }}</h4>
               </div>
             </div>
-            <div class="card-content-wrap"></div>
           </div>
           <div class="card-content-bottom">
             <div class="card-function">
-              <a href="#">86 <span>Tours,</span></a>
-              <a href="#">28 <span>Activities</span></a>
+              <a href="#" style="text-decoration:none;">0 <span>Tours,</span></a> <!-- يمكنك تحديث هذه القيم بناءً على البيانات -->
+              <a href="#"style="text-decoration:none;">0 <span>Activities</span></a>
             </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a routerLink="/destinationdetails" class="card-img">
-              <img src="assets/image/card-img/mexico.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Mexico</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">26 <span>Tours,</span></a>
-              <a href="#">24 <span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a routerLink="/destinationdetails" class="card-img">
-              <img src="assets/image/card-img/venezuela.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Venezuela</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">36 <span>Tours,</span></a>
-              <a href="#">21 <span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="800ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a routerLink="/destinationdetails" class="card-img">
-              <img src="assets/image/card-img/switzerland.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Switzerland</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">12 <span>Tours,</span></a>
-              <a href="#">28 <span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="1000ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a href="destination-details.html.html" class="card-img">
-              <img src="assets/image/card-img/italy.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Italy</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">33 <span>Tours,</span></a>
-              <a href="#">21<span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="1200ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a href="destination-details.html.html" class="card-img">
-              <img src="assets/image/card-img/germany.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Germany</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">12 <span>Tours,</span></a>
-              <a href="#">28<span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="1400ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a href="destination-details.html.html" class="card-img">
-              <img src="assets/image/card-img/austria.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Austria</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">86 <span>Tours,</span></a>
-              <a href="#">28<span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 wow animate fadeInUp" data-wow-delay="1600ms" data-wow-duration="1500ms">
-        <div class="destination-card">
-          <div class="destination-card-two">
-            <a href="destination-details.html.html" class="card-img">
-              <img src="assets/image/card-img/indonesia-two.png" alt="" />
-            </a>
-            <div class="card-content-wrap">
-              <div class="card-content">
-                <h4>Indonesia</h4>
-              </div>
-            </div>
-            <div class="card-content-wrap"></div>
-          </div>
-          <div class="card-content-bottom">
-            <div class="card-function">
-              <a href="#">32 <span>Tours,</span></a>
-              <a href="#">28<span>Activities</span></a>
-            </div>
-            <p>
-              A Vibrant City of Canals, Culture, Art and Rich History
-            </p>
+            <p>{{ destination.description }}</p>
           </div>
         </div>
       </div>
@@ -237,3 +67,5 @@
     </div>
   </div>
 </div>
+
+

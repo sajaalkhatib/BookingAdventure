@@ -9,5 +9,9 @@ public partial class AdventureCategory
 
     public string? CategoryName { get; set; }
 
+    public string? Description { get; set; }
+
     public virtual ICollection<Adventure> Adventures { get; set; } = new List<Adventure>();
+
+    public virtual ICollection<Destination> Destinations { get; set; } = new List<Destination>();
 }
