@@ -15,6 +15,8 @@ public partial class MyAppDbContext : DbContext
     {
     }
 
+
+
     public virtual DbSet<Adventure> Adventures { get; set; }
 
     public virtual DbSet<AdventureCategory> AdventureCategories { get; set; }

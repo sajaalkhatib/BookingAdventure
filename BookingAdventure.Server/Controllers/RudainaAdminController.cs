@@ -14,10 +14,10 @@ namespace BookingAdventure.Server.Controllers
     [ApiController]
     public class RudainaAdminController : ControllerBase
     {
-        private readonly MyDbContext _DB;
+        private readonly MyAppDbContext _DB;
         private readonly IWebHostEnvironment _env;
 
-        public RudainaAdminController(MyDbContext DB, IWebHostEnvironment env)
+        public RudainaAdminController(MyAppDbContext DB, IWebHostEnvironment env)
         {
             _DB = DB;
             _env = env;

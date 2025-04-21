@@ -31,15 +31,16 @@ const routes: Routes = [
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "service", component: ServiceComponent },
+  { path: "forgetPass", component: ForgotPasswordComponent },
   //{ path: "dashbord", component: DashboardComponent },
   {
     path: "Admin", component: AdmainComponent, children: [
       { path: "", component: OverviewComponent },
-      { path: "getAdventure", component: GetAdventureComponent }
+      { path: "getAdventure", component: GetAdventureComponent },
       
 
   { path: "service", component: ServiceComponent },
-  { path: "forgetPass", component: ForgotPasswordComponent }
+  
   { path: "service/:destinationId", component: ServiceComponent },
   { path: "AddAdventure", component: AddAdventureComponent }
 

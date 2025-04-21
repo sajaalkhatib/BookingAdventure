@@ -8,8 +8,8 @@ namespace BookingAdventure.Server.Controllers
     [ApiController]
     public class RudainaController : Controller
     {
-        private readonly MyDbContext _context;
-        public RudainaController(MyDbContext context)
+        private readonly MyAppDbContext _context;
+        public RudainaController(MyAppDbContext context)
         {
             _context = context;
         }

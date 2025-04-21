@@ -9,9 +9,9 @@ namespace BookingAdventure.Server.Controllers
     [ApiController]
     public class DashboardController : ControllerBase
     {
-        private readonly MyDbContext _context;
+        private readonly MyAppDbContext _context;
 
-        public DashboardController(MyDbContext context)
+        public DashboardController(MyAppDbContext context)
         {
             _context = context;
         }
