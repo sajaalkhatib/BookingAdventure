@@ -31,8 +31,6 @@ public partial class Adventure
 
     public int? AdventureTypeId { get; set; }
 
-    public virtual ICollection<AdventureDetail> AdventureDetails { get; set; } = new List<AdventureDetail>();
-
     public virtual ICollection<AdventureImage> AdventureImages { get; set; } = new List<AdventureImage>();
 
     public virtual AdventureType? AdventureType { get; set; }

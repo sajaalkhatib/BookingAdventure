@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 //import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,10 +28,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 
 ;
 import { ServiceComponent } from './service/service.component';
-import { FormsModule } from '@angular/forms';
 
 import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.component';
-import {  ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -67,11 +64,11 @@ import {  ReactiveFormsModule } from '@angular/forms';
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule
-    BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule,
-    AppRoutingModule
-    AppRoutingModule,
     FormsModule,
+     HttpClientModule, FormsModule, ReactiveFormsModule,
+    AppRoutingModule
+   
+    ,
     ReactiveFormsModule 
 
   ],

@@ -30,10 +30,15 @@ const routes: Routes = [
   { path: "destinationdetails", component: DestinationdetailsComponent },
   { path: 'booking/:adventureId', component: BookingComponent },
   { path: "login", component: LoginComponent },
+  { path: "service/:destinationId", component: ServiceComponent },
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "service", component: ServiceComponent },
   //{ path: "dashbord", component: DashboardComponent },
+  { path: "forgetPass", component: ForgotPasswordComponent },
+  { path: "", component: HomeComponent },
+  { path: "service/:destinationId", component: ServiceComponent },
+
   {
     path: "Admin", component: AdmainComponent, children: [
       { path: "", component: OverviewComponent },
@@ -42,9 +47,8 @@ const routes: Routes = [
       //{ path: "addAdventure", component: AddadventureComponent }
       
 
-  { path: "service", component: ServiceComponent },
-  { path: "forgetPass", component: ForgotPasswordComponent }
-  { path: "service/:destinationId", component: ServiceComponent },
+  
+
   { path: "AddAdventure", component: AddAdventureComponent }
 
 
