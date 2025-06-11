@@ -4,7 +4,6 @@
     <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
   </svg>
 </div>-->
-
 <!-- Login Modal -->
 <!--<div class="modal login-modal" id="user-login" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -44,7 +43,6 @@
     </div>
   </div>
 </div>-->
-
 <!-- top bar section start -->
 <!--<div class="top-bar">
   <div class="top-bar-content">
@@ -147,67 +145,47 @@
 <header class="header-area style-1">
   <div class="container-fluid container-tour d-flex flex-nowrap align-items-center justify-content-between">
     <div class="header-logo">
-      <a href="index.html"><img alt="image" class="img-fluid" src="assets/image/svg/tripfy-logo.svg" /></a>
+      <a routerLink="/"><img alt="image" class="img-fluid" src="assets/image/svg/tripfy-logo.svg" /></a>
     </div>
+
     <div class="main-menu">
       <div class="mobile-logo-area d-lg-none d-flex justify-content-between">
         <div class="mobile-logo-wrap">
-          <a href="index.html">
-            <img alt="image" class="img-fluid"
-                 src="assets/image/svg/tripfy-logo.svg" />
+          <a routerLink="/">
+            <img alt="image" class="img-fluid" src="assets/image/svg/tripfy-logo.svg" />
           </a>
         </div>
-
       </div>
 
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active text-decoration-none"
-             href="index.html">Home</a>
-          <i class="bi bi-plus dropdown-icon"></i>
+          <a class="nav-link active text-decoration-none" routerLink="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/about">About</a>
+        <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Destination">Destination</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/service">Service</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/booking">Booking</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/profile">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Admin">Admin</a></li>
+
+        <!-- ✅ شرط تسجيل الدخول -->
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/login">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/Destination">Destination</a>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/reg">Register</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="service">Service</a>
-        </li>
-        <!--<li class="nav-item">
-    <a class="nav-link text-decoration-none"
-       routerLink="/login">Login</a>
-  </li>-->
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/reg">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/booking">Booking</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/contact">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none"
-             routerLink="/Admin">Admin</a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" (click)="logout()">Logout</a>
         </li>
       </ul>
 
       <div class="btn-area d-lg-none d-flex justify-content-center">
-        <a class="primary-btn" href="https://demo.qzency.com/contact.html"> Let’s Talk </a>
+        <a class="primary-btn" href="https://demo.qzency.com/contact.html">Let’s Talk</a>
       </div>
     </div>
+
     <div class="nav-right d-flex justify-content-end align-items-center">
       <div class="right-sidebar-button">
         <a href="#" class="position-relative text-dark text-decoration-none">
@@ -218,9 +196,6 @@
         </a>
       </div>
     </div>
-
-    <a class="primary-btn d-lg-flex d-none" routerLink="/login">Login</a>
-
   </div>
-
 </header>
+

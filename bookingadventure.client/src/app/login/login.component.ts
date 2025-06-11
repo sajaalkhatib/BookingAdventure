@@ -46,7 +46,7 @@ export class LoginComponent {
       next: (response: any) => {
         if (response.status === 200) {
           const userId = response.body.user.userId;
-          sessionStorage.setItem('userId', userId);
+          this._myser.setLoggedIn(userId); // ✅ حدث حالة الدخول
           alert('Login Successful!');
           this._route.navigate(["/about"]);
         }
@@ -63,5 +63,6 @@ export class LoginComponent {
       }
     });
   }
+
 
 }
