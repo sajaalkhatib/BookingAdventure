@@ -52,7 +52,7 @@ export class ServiesapiService {
   }
 
   deleteAdventure(id: any) {
-    return this.http.delete(`https://localhost:7280/api/Dashboard/adventure/${id}`);
+    this.http.delete(`https://localhost:7280/api/Dashboard/adventures/${id}`)
   }
 
 

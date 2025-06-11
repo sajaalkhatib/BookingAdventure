@@ -1,48 +1,32 @@
 ﻿using BookingAdventure.Server.IDataService;
 using BookingAdventure.Server.Models;
-
-//using BookingAdventure.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngularApp",
-        builder => builder
-            .AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod());
-});
+builder.Services.AddDbContext<MyDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MyAppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));
-
-//builder.Services.AddDbContext<MyDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
-
-builder.Services.AddCors(options => options.AddPolicy("develop", option =>
+// ✨ اضبط CORS
+builder.Services.AddCors(options =>
 {
-    option.AllowAnyOrigin();
-    option.AllowAnyHeader();
-    option.AllowAnyMethod();
-}));
-//builder.Services.AddScoped<IAdmin>();
-//builder.Services.AddScoped<Iuser>();
-//builder.Services.AddScoped<User>();
-//builder.Services.AddScoped<Admin>();
-
-
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
 app.UseDefaultFiles();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -50,13 +34,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors("develop");
+
+// ✨ لازم UseCors قبل UseAuthorization
+app.UseCors("AllowAll");
+
 app.UseHttpsRedirection();
-
-
-
 app.UseStaticFiles();
-
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -64,16 +47,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/images"
 });
 
-app.UseHttpsRedirection();
-app.UseCors("AllowAngularApp");
-
 app.UseAuthorization();
-
 app.MapControllers();
-
-
-
-app.UseCors("develop");
 
 app.MapFallbackToFile("/index.html");
 

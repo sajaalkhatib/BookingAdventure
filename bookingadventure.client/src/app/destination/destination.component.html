@@ -34,7 +34,7 @@
       <div *ngFor="let destination of destinations; let i = index" class="col-lg-3 wow animate fadeInUp" [attr.data-wow-delay]="(i * 200) + 'ms'" data-wow-duration="1500ms">
         <div class="destination-card">
           <div class="destination-card-two">
-              <a [routerLink]="['/service', destination.destinationId]" class="card-img">
+              <a routerLink="/service/{{destination.destinationId}}" class="card-img">
                 <img [src]="destination.imageUrl" alt="" />
               </a>
 

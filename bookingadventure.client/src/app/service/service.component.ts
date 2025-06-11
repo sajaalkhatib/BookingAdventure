@@ -26,10 +26,10 @@ export class ServiceComponent {
   }
   ngOnInit() {
     const destinationId = Number(this.route.snapshot.paramMap.get('destinationId'));
-    console.log(`destinationID: ${destinationId}`);
+    console.log(`destinationID: ${ destinationId }`);
 
     this.adventureService.getAllAdventures().subscribe((allAdventures) => {
-  
+
       const filtered = allAdventures.filter(adventure => adventure.destinationId == destinationId);
       if (filtered.length > 0) {
         this.selectedGovernorateName = filtered[0].destinationName;

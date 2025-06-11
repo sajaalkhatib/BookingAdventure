@@ -15,6 +15,8 @@ import { ServiceComponent } from './service/service.component';
 import { AdmainComponent } from './Admain/admain.component';
 import { OverviewComponent } from './Admain/overview/overview.component';
 import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
+import { EditeAdventureComponent } from './Admain/Adventure/edite-adventure/edite-adventure.component';
+//import { AddadventureComponent } from './Admain/addadventure/addadventure.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.component';
 
@@ -28,11 +30,16 @@ const routes: Routes = [
   { path: "destinationdetails", component: DestinationdetailsComponent },
   { path: 'booking/:adventureId', component: BookingComponent },
   { path: "login", component: LoginComponent },
+  { path: "service/:destinationId", component: ServiceComponent },
   { path: "reg", component: RegesterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "service", component: ServiceComponent },
   { path: "forgetPass", component: ForgotPasswordComponent },
   //{ path: "dashbord", component: DashboardComponent },
+  { path: "forgetPass", component: ForgotPasswordComponent },
+  { path: "", component: HomeComponent },
+  { path: "service/:destinationId", component: ServiceComponent },
+
   {
     path: "Admin", component: AdmainComponent, children: [
       { path: "", component: OverviewComponent },

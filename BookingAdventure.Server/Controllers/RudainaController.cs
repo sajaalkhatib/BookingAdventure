@@ -53,7 +53,7 @@ namespace BookingAdventure.Server.Controllers
                 .Include(a => a.AdventureType)
                 .Include(a => a.Destination)
                 .Include(a => a.AdventureImages)
-                .Include(a => a.AdventureDetails) // تأكد من تضمين AdventureDetails هنا
+                //.Include(a => a.AdventureDetails) // تأكد من تضمين AdventureDetails هنا
                 .FirstOrDefaultAsync(a => a.AdventureId == id);
 
             if (adventure == null)
@@ -74,9 +74,9 @@ namespace BookingAdventure.Server.Controllers
                 DestinationName = adventure.Destination?.Name,
                 DestinationId = adventure.DestinationId,
                 Images = adventure.AdventureImages.Select(img => img.ImageUrl).ToList(),
-                Overview = adventure.AdventureDetails?.FirstOrDefault()?.Overview, // الحصول على أول عنصر في AdventureDetails
-                HighlightsJson = adventure.AdventureDetails?.FirstOrDefault()?.HighlightsJson,  // الوصول لأول عنصر من AdventureDetails
-                FaqsJson = adventure.AdventureDetails?.FirstOrDefault()?.FaqsJson
+                //Overview = adventure.AdventureDetails?.FirstOrDefault()?.Overview, // الحصول على أول عنصر في AdventureDetails
+                //HighlightsJson = adventure.AdventureDetails?.FirstOrDefault()?.HighlightsJson,  // الوصول لأول عنصر من AdventureDetails
+                //FaqsJson = adventure.AdventureDetails?.FirstOrDefault()?.FaqsJson
             };
 
             return Ok(dto);

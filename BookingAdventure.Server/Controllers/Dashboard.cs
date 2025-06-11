@@ -81,9 +81,10 @@ namespace BookingAdventure.Server.Controllers
                     a.Location,
                     a.MaxParticipants,
                     a.IsAvailable,
-                    //a.InstructorName = a.Instructor.FullName,
-                    //a.CategoryName = a.Category.CategoryName,
-                    //a.DestinationName = a.Destination.Name,
+                    InstructorName = a.Instructor.FullName,  // 👈 اسم المدرس
+                    CategoryName = a.Category.CategoryName,  // 👈 اسم التصنيف
+                    DestinationName = a.Destination.Name,    // 👈 اسم الوجهة
+
                     Images = a.AdventureImages.Select(img => new { img.ImageUrl }).ToList()
                 })
                 .ToListAsync();
@@ -91,7 +92,6 @@ namespace BookingAdventure.Server.Controllers
             return Ok(adventures);
         }
 
-        // Add Adventure
         [HttpPost("adventure")]
         public async Task<IActionResult> AddService([FromBody] DTO.DTOAddServise adminSer)
         {
@@ -100,7 +100,7 @@ namespace BookingAdventure.Server.Controllers
                 return BadRequest("Invalid Service Data");
             }
 
-            Console.WriteLine("Received Adventure: " + adminSer.Title); // تحقق من البيانات التي تستلمها
+            Console.WriteLine("Received Adventure: " + adminSer.Title); // تحقق من البيانات
 
             var adventure = new Adventure
             {
@@ -112,6 +112,9 @@ namespace BookingAdventure.Server.Controllers
                 Location = adminSer.Location,
                 MaxParticipants = adminSer.MaxParticipants,
                 IsAvailable = adminSer.IsAvailable,
+                InstructorId = adminSer.InstructorId,    // 🟰 حفظ الانستركتور
+                CategoryId = adminSer.CategoryId,        // 🟰 حفظ الكاتيجوري
+                DestinationId = adminSer.DestinationId   // 🟰 حفظ الديستينيشن
             };
 
             _context.Adventures.Add(adventure);
@@ -191,25 +194,24 @@ namespace BookingAdventure.Server.Controllers
         {
             // البحث عن المغامرة مع الحجز والصور المرتبطة
             var adventure = await _context.Adventures
-                .Include(a => a.AdventureImages)  // تحميل الصور المرتبطة
-                .Include(a => a.Bookings)         // تحميل الحجز المرتبط
-                .FirstOrDefaultAsync(a => a.AdventureId == id);
+     .Include(a => a.AdventureImages)
+     .Include(a => a.Bookings)
+     .Include(a => a.Reviews)  // 🛑 مثلا إضافة الـ Reviews كمان
+     .FirstOrDefaultAsync(a => a.AdventureId == id);
 
-            // إذا لم يتم العثور على المغامرة
             if (adventure == null)
                 return NotFound("Adventure not found");
 
-            // حذف الحجز المرتبط بالمغامرة أولاً
+            // حذف كل شيء مرتبط
             _context.Bookings.RemoveRange(adventure.Bookings);
-
-            // حذف الصور المرتبطة
             _context.AdventureImages.RemoveRange(adventure.AdventureImages);
+            _context.Reviews.RemoveRange(adventure.Reviews); // 🛑 حذف التقييمات مثلا
 
-            // الآن حذف المغامرة نفسها
+            // ثم حذف المغامرة نفسها
             _context.Adventures.Remove(adventure);
 
-            // حفظ التغييرات في قاعدة البيانات
             await _context.SaveChangesAsync();
+
 
             return Ok();
         }

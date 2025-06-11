@@ -22,6 +22,8 @@ import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './Admain/overview/overview.component';
 import { AdmainComponent } from './Admain/admain.component';
 import { GetAdventureComponent } from './Admain/Adventure/get-adventure/get-adventure.component';
+import { EditeAdventureComponent } from './Admain/Adventure/edite-adventure/edite-adventure.component';
+//import { AddadventureComponent } from './Admain/addadventure/addadventure.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 ;
@@ -51,6 +53,8 @@ import { AddAdventureComponent } from './Admin/add-adventure/add-adventure.compo
     OverviewComponent,
     AdmainComponent,
     GetAdventureComponent,
+    EditeAdventureComponent,
+    //AddadventureComponent,
     ForgotPasswordComponent,
     ServiceComponent,
     AddAdventureComponent
